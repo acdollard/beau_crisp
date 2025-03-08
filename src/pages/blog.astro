@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { createClient } from "@sanity/client";
+
+const client = createClient({
+  projectId: "agaaxyz0",
+  dataset: "production",
+  apiVersion: "2024-03-08",
+  useCdn: true,
+});
+
+const posts = await client.fetch(`
+  *[_type == "post"] | order(publishedAt desc) {
+    title,
+    slug,
+    publishedAt,
+    excerpt,
+    mainImage {
+      asset-> {
+        _id,
+        url
+      }
+    }
+  }
+`);
+---
+
+<Layout title="Blog - Beau Crisp">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-8">Blog</h1>
+
+    <div class="grid gap-8">
+      {
+        posts.map((post: any) => (
+          <article class="bg-white p-6 rounded-lg shadow">
+            {post.mainImage && (
+              <img
+                src={post.mainImage.asset.url}
+                alt={post.title}
+                class="w-full h-48 object-cover rounded-lg mb-4"
+              />
+            )}
+            <h2 class="text-2xl font-bold mb-2">
+              <a
+                href={`/blog/${post.slug.current}`}
+                class="hover:text-blue-600"
+              >
+                {post.title}
+              </a>
+            </h2>
+            <p class="text-gray-600 mb-4">
+              {new Date(post.publishedAt).toLocaleDateString()}
+            </p>
+            {post.excerpt && <p class="text-gray-700">{post.excerpt}</p>}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

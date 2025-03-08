@@ -1,4 +1,26 @@
-# Astro Starter Kit: Basics
+# Beau Crisp - Strength & Conditioning Coach
+
+A web application for strength and conditioning coaching services built with Astro.js and Sanity.io.
+
+## Features
+
+- Blog articles
+- User authentication
+- Custom workout plans
+- About page
+
+## Tech Stack
+
+- Astro.js
+- Sanity.io (CMS)
+- TailwindCSS
+- React (for interactive components)
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run development server: `npm run dev`
 
 ```sh
 npm create astro@latest -- --template basics

@@ -1,11 +1,50 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Beau Crisp - Strength & Conditioning">
+  <section class="py-20">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold mb-4">Transform Your Fitness Journey</h1>
+      <p class="text-xl text-gray-600 mb-8">
+        Expert coaching and personalized workout plans to help you achieve your
+        fitness goals
+      </p>
+      <a
+        href="/login"
+        class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+        >Get Started</a
+      >
+    </div>
+  </section>
+
+  <section class="py-16">
+    <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="p-6 bg-white rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-4">Custom Workout Plans</h3>
+        <p class="text-gray-600">
+          Personalized training programs designed specifically for your goals
+          and experience level.
+        </p>
+      </div>
+      <div class="p-6 bg-white rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-4">Expert Guidance</h3>
+        <p class="text-gray-600">
+          Regular feedback and adjustments to ensure you're making optimal
+          progress.
+        </p>
+      </div>
+      <div class="p-6 bg-white rounded-lg shadow">
+        <h3 class="text-xl font-semibold mb-4">Educational Content</h3>
+        <p class="text-gray-600">
+          Access to our blog with tips, techniques, and insights about strength
+          and conditioning.
+        </p>
+      </div>
+    </div>
+  </section>
 </Layout>
