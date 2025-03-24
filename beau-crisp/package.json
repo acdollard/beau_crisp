@@ -15,7 +15,9 @@
     "sanity"
   ],
   "dependencies": {
+    "@auth/core": "^0.37.4",
     "@sanity/vision": "^3.78.1",
+    "auth-astro": "^4.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sanity": "^3.78.1",
