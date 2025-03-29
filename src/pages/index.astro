@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import heroImage from "../assets/guy.jpg";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -20,7 +22,17 @@ import Layout from "../layouts/Layout.astro";
       >
     </div>
     <div class="w-1/2">
-      <img src="src/assets/guy.jpg" alt="Hero Image" class="max-h-[900px]" />
+      <Image
+        src={heroImage}
+        alt="Hero Image"
+        class="max-h-[900px] w-full object-cover"
+        width={800}
+        height={900}
+        quality={80}
+        format="webp"
+        loading="eager"
+        decoding="async"
+      />
     </div>
   </section>
 
