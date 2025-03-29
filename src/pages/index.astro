@@ -2,41 +2,23 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import heroImage from "../assets/guy.jpg";
+import barbell from "../assets/barbell.jpg";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout title="Beau Crisp - Strength & Conditioning">
-  <section class="py-20 flex flex-row">
-    <div class="text-center m-auto h-full">
-      <h1 class="text-4xl font-bold mb-4">Transform Your Fitness Journey</h1>
-      <p class="text-xl text-gray-600 mb-8">
-        Expert coaching and personalized workout plans to help you achieve your
-        fitness goals
-      </p>
-      <a
-        href="/login"
-        class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
-        >Get Started</a
-      >
-    </div>
-    <div class="w-1/2">
-      <Image
-        src={heroImage}
-        alt="Hero Image"
-        class="max-h-[900px] w-full object-cover"
-        width={800}
-        height={900}
-        quality={80}
-        format="webp"
-        loading="eager"
-        decoding="async"
-      />
+  <section
+    class="h-[80vh] bg-hero-image-2 bg-cover bg-center flex flex-col justify-center sepia"
+  >
+    <div class="bg-white/50">
+      <h1 class="py-12 text-6xl text-center font-customFont">
+        MOVE OR EXPIRE.
+      </h1>
     </div>
   </section>
-
-  <section class="py-16">
+  <section class="container mx-auto py-16">
     <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
     <div class="grid md:grid-cols-3 gap-8">
       <div class="p-6 bg-white rounded-lg shadow">
