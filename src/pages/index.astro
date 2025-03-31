@@ -13,11 +13,21 @@ import barbell from "../assets/barbell.jpg";
     class="h-[80vh] bg-hero-image-2 bg-cover bg-center flex flex-col justify-center sepia"
   >
     <div class="bg-white/50 flex flex-col items-center justify-center py-8">
-      <h1 class="text-8xl text-center font-customFont text-slate-800">
+      <!--       <h1 class="text-8xl text-center font-customFont text-slate-800">
         MOVE OR EXPIRE.
+      </h1> -->
+      <h1 class="text-8xl text-center font-customFont text-slate-800">
+        <a
+          href=""
+          class="typewrite"
+          data-period="2000"
+          data-type='[ "MOVE OR EXPIRE.", "COMPLACENCY IS EVIL.", "BURIED IN THE BONES."]'
+        >
+          <span class="wrap"></span>
+        </a>
       </h1>
       <h2 class="text-center text-3xl/10 text-slate-800 my-4">
-        Training For Comprehensive Strength.<br /> Writing For A Comprehensive Mind.
+        WORKOUTS For Comprehensive Strength.<br /> WRITING For A Comprehensive Mind.
       </h2>
       <button
         class="border-2 border-slate-800 hover:bg-slate-800 text-slate-800 hover:text-slate-100 px-6 py-4 mt-4"
@@ -26,8 +36,10 @@ import barbell from "../assets/barbell.jpg";
       </button>
     </div>
   </section>
-  <section class="container mx-auto py-16">
-    <h2 class="text-3xl font-bold text-center mb-12">Our Services</h2>
+  <section class="container mx-auto py-16 bg-zinc-100">
+    <h2 class="text-6xl font-customFont uppercase text-center mb-12">
+      Our Services
+    </h2>
     <div class="grid md:grid-cols-3 gap-8">
       <div class="p-6 bg-white rounded-lg shadow">
         <h3 class="text-xl font-semibold mb-4">Custom Workout Plans</h3>
@@ -53,3 +65,64 @@ import barbell from "../assets/barbell.jpg";
     </div>
   </section>
 </Layout>
+
+<script type="text/javascript">
+  var TxtType = function (el, toRotate, period) {
+    this.toRotate = toRotate;
+    this.el = el;
+    this.loopNum = 0;
+    this.period = parseInt(period, 10) || 2000;
+    this.txt = "";
+    this.tick();
+    this.isDeleting = false;
+  };
+
+  TxtType.prototype.tick = function () {
+    var i = this.loopNum % this.toRotate.length;
+    var fullTxt = this.toRotate[i];
+
+    if (this.isDeleting) {
+      this.txt = fullTxt.substring(0, this.txt.length - 1);
+    } else {
+      this.txt = fullTxt.substring(0, this.txt.length + 1);
+    }
+
+    this.el.innerHTML = '<span class="wrap">' + this.txt + "</span>";
+
+    var that = this;
+    var delta = 200 - Math.random() * 100;
+
+    if (this.isDeleting) {
+      delta /= 2;
+    }
+
+    if (!this.isDeleting && this.txt === fullTxt) {
+      delta = this.period;
+      this.isDeleting = true;
+    } else if (this.isDeleting && this.txt === "") {
+      this.isDeleting = false;
+      this.loopNum++;
+      delta = 500;
+    }
+
+    setTimeout(function () {
+      that.tick();
+    }, delta);
+  };
+
+  window.onload = function () {
+    var elements = document.getElementsByClassName("typewrite");
+    for (var i = 0; i < elements.length; i++) {
+      var toRotate = elements[i].getAttribute("data-type");
+      var period = elements[i].getAttribute("data-period");
+      if (toRotate) {
+        new TxtType(elements[i], JSON.parse(toRotate), period);
+      }
+    }
+    // INJECT CSS
+    var css = document.createElement("style");
+    css.type = "text/css";
+    css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #27272a}";
+    document.body.appendChild(css);
+  };
+</script>
