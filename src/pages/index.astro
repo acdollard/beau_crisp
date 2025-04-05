@@ -1,8 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import heroImage from "../assets/guy.jpg";
-import barbell from "../assets/barbell.jpg";
+import bjj from "../assets/bjj-1.jpg";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -10,13 +9,17 @@ import barbell from "../assets/barbell.jpg";
 
 <Layout title="Beau Crisp - Strength & Conditioning">
   <section
-    class="h-[80vh] bg-hero-image-2 bg-cover bg-center flex flex-col justify-center sepia"
+    class="h-[70vh] bg-hero-image-2 bg-cover bg-center flex flex-col justify-center"
   >
-    <div class="bg-white/50 flex flex-col items-center justify-center py-8">
+    <div
+      class="bg-white/50 backdrop-blur-sm flex flex-col items-center justify-center py-8"
+    >
       <!--       <h1 class="text-8xl text-center font-customFont text-slate-800">
         MOVE OR EXPIRE.
       </h1> -->
-      <h1 class="text-8xl text-center font-customFont text-slate-800">
+      <h1
+        class="text-4xl sm:text-6xl md:text-8xl text-center font-customFont text-slate-800 px-4"
+      >
         <a
           href=""
           class="typewrite"
@@ -26,40 +29,43 @@ import barbell from "../assets/barbell.jpg";
           <span class="wrap"></span>
         </a>
       </h1>
-      <h2 class="text-center text-3xl/10 text-slate-800 my-4">
-        WORKOUTS For Comprehensive Strength.<br /> WRITING For A Comprehensive Mind.
+      <h2
+        class="text-center text-xl sm:text-2xl md:text-3xl text-slate-800 my-4 px-4"
+      >
+        Training For Comprehensive Strength.<br /> Writing For A Comprehensive Mind.
       </h2>
       <button
-        class="border-2 border-slate-800 hover:bg-slate-800 text-slate-800 hover:text-slate-100 px-6 py-4 mt-4"
+        class="!bg-rose-800 border-2 border-rose-800 hover:!bg-rose-700 text-white hover:text-white px-6 py-4 mt-4 transition-colors duration-200 shadow-lg"
       >
-        JOIN NOW
+        GET STRONG NOW
       </button>
     </div>
   </section>
-  <section class="container mx-auto py-16 bg-zinc-100">
-    <h2 class="text-6xl font-customFont uppercase text-center mb-12">
-      Our Services
+
+  <section class="container mx-auto py-16">
+    <h2
+      class="text-3xl sm:text-4xl md:text-6xl font-customFont uppercase text-center mb-12 px-12"
+    >
+      It Doesn't Matter If You're 7 or 87. <br /><br />
+      Progress can be made.
+      <br />
+      starting anywhere.
     </h2>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="p-6 bg-white rounded-lg shadow">
-        <h3 class="text-xl font-semibold mb-4">Custom Workout Plans</h3>
-        <p class="text-gray-600">
-          Personalized training programs designed specifically for your goals
-          and experience level.
-        </p>
+    <div class="flex flex-row md:flex-row gap-8">
+      <div class="w-full md:w-1/2">
+        <Image
+          src={bjj}
+          alt="BJJ"
+          class="opacity-90 w-full h-full object-cover"
+          width={800}
+          height={800}
+          fit="cover"
+        />
       </div>
-      <div class="p-6 bg-white rounded-lg shadow">
-        <h3 class="text-xl font-semibold mb-4">Expert Guidance</h3>
-        <p class="text-gray-600">
-          Regular feedback and adjustments to ensure you're making optimal
-          progress.
-        </p>
-      </div>
-      <div class="p-6 bg-white rounded-lg shadow">
-        <h3 class="text-xl font-semibold mb-4">Educational Content</h3>
-        <p class="text-gray-600">
-          Access to our blog with tips, techniques, and insights about strength
-          and conditioning.
+      <div class="w-full md:w-1/2">
+        <p class="text-sm md:text-xl">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+          quos.
         </p>
       </div>
     </div>
