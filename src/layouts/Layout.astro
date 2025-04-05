@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import { Image } from "astro:assets";
-import logo from "../assets/buried2.png";
+import logo from "../assets/buried1.png";
 interface Props {
   title: string;
 }
@@ -28,9 +28,9 @@ const { title } = Astro.props;
     />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-zinc-100">
+  <body class="min-h-screen">
     <header
-      class="bg-gradient-to-r from-zinc-800 from-5% via-zinc-600 via-15% to-zinc-800 to-35% shadow font-customFont font-light text-2xl tracking-wide"
+      class="bg-gradient-to-r backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow font-customFont font-light text-2xl tracking-wide"
     >
       <nav class="container mx-auto px-4 py-6">
         <div class="flex justify-between items-center">
@@ -62,27 +62,27 @@ const { title } = Astro.props;
           <div class="hidden md:flex space-x-6">
             <a
               href="/"
-              class="text-zinc-100 hover:text-rose-600 transition-colors duration-200"
+              class="text-zinc-800 hover:text-rose-600 transition-colors duration-200 text-3xl"
               >Home</a
             >
             <a
               href="/blog"
-              class="text-zinc-100 hover:text-rose-600 transition-colors duration-200"
+              class="text-zinc-800 hover:text-rose-600 transition-colors duration-200 text-3xl"
               >Blog</a
             >
             <a
               href="/workouts"
-              class="text-zinc-100 hover:text-rose-600 transition-colors duration-200"
+              class="text-zinc-800 hover:text-rose-600 transition-colors duration-200 text-3xl"
               >Workouts</a
             >
             <a
               href="/about"
-              class="text-zinc-100 hover:text-rose-600 transition-colors duration-200"
+              class="text-zinc-800 hover:text-rose-600 transition-colors duration-200 text-3xl"
               >About</a
             >
             <a
               href="/login"
-              class="text-zinc-100 hover:text-rose-600 transition-colors duration-200"
+              class="text-zinc-800 hover:text-rose-600 transition-colors duration-200 text-3xl"
               >Login</a
             >
           </div>
@@ -95,27 +95,27 @@ const { title } = Astro.props;
         >
           <a
             href="/"
-            class="block text-zinc-100 hover:text-rose-600 transition-colors duration-200"
+            class="block text-zinc-800 hover:text-rose-600 transition-colors duration-200"
             >Home</a
           >
           <a
             href="/blog"
-            class="block text-zinc-100 hover:text-rose-600 transition-colors duration-200"
+            class="block text-zinc-800 hover:text-rose-600 transition-colors duration-200"
             >Blog</a
           >
           <a
             href="/workouts"
-            class="block text-zinc-100 hover:text-rose-600 transition-colors duration-200"
+            class="block text-zinc-800 hover:text-rose-600 transition-colors duration-200"
             >Workouts</a
           >
           <a
             href="/about"
-            class="block text-zinc-100 hover:text-rose-600 transition-colors duration-200"
+            class="block text-zinc-800 hover:text-rose-600 transition-colors duration-200"
             >About</a
           >
           <a
             href="/login"
-            class="block text-zinc-100 hover:text-rose-600 transition-colors duration-200"
+            class="block text-zinc-800 hover:text-rose-600 transition-colors duration-200"
             >Login</a
           >
         </div>

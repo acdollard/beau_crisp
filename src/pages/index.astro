@@ -1,7 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import bjj from "../assets/bjj-1.jpg";
+import paper from "../assets/paper.jpg";
+import bjj from "../assets/bjj-sepia.jpg";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -9,16 +10,11 @@ import bjj from "../assets/bjj-1.jpg";
 
 <Layout title="Beau Crisp - Strength & Conditioning">
   <section
-    class="h-[70vh] bg-hero-image-2 bg-cover bg-center flex flex-col justify-center"
+    class="h-[70vh] bg-hero-image-2 bg-bottom bg-cover flex flex-col justify-center"
   >
-    <div
-      class="bg-white/50 backdrop-blur-sm flex flex-col items-center justify-center py-8"
-    >
-      <!--       <h1 class="text-8xl text-center font-customFont text-slate-800">
-        MOVE OR EXPIRE.
-      </h1> -->
+    <div class="flex flex-col items-center justify-center py-8">
       <h1
-        class="text-4xl sm:text-6xl md:text-8xl text-center font-customFont text-slate-800 px-4"
+        class="text-4xl sm:text-6xl md:text-8xl text-center font-customFont text-slate-200 text-shadow-lg px-4"
       >
         <a
           href=""
@@ -30,7 +26,7 @@ import bjj from "../assets/bjj-1.jpg";
         </a>
       </h1>
       <h2
-        class="text-center text-xl sm:text-2xl md:text-3xl text-slate-800 my-4 px-4"
+        class="text-center text-xl sm:text-2xl md:text-3xl text-slate-200 my-4 px-4"
       >
         Training For Comprehensive Strength.<br /> Writing For A Comprehensive Mind.
       </h2>
@@ -44,14 +40,14 @@ import bjj from "../assets/bjj-1.jpg";
 
   <section class="container mx-auto py-16">
     <h2
-      class="text-3xl sm:text-4xl md:text-6xl font-customFont uppercase text-center mb-12 px-12"
+      class="text-3xl sm:text-4xl md:text-6xl font-customFont uppercase text-center mb-12 px-12 text-slate-800"
     >
-      It Doesn't Matter If You're 7 or 87. <br /><br />
+      It Doesn't Matter If You're 7 or 87. <br />
       Progress can be made.
       <br />
       starting anywhere.
     </h2>
-    <div class="flex flex-row md:flex-row gap-8">
+    <div class="flex flex-row justify-center md:flex-row gap-8 mx-auto">
       <div class="w-full md:w-1/2">
         <Image
           src={bjj}
