@@ -1,16 +1,43 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import paper from "../assets/paper.jpg";
+import { createClient } from "@sanity/client";
 import bjj from "../assets/bjj-sepia.jpg";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+interface Post {
+  title: string;
+  slug: string;
+  publishedAt: string;
+  excerpt: string;
+  mainImage: { asset: { url: string } };
+}
+
+const client = createClient({
+  projectId: "agaaxyz0",
+  dataset: "production",
+  apiVersion: "2024-03-08",
+  useCdn: true,
+});
+
+const posts = await client.fetch(`
+  *[_type == "post"] | order(publishedAt desc) {
+    title,
+    slug,
+    publishedAt,
+    excerpt,
+    mainImage {
+      asset-> {
+        _id,
+        url
+      }
+    }
+  }[0...3]
+`);
 ---
 
 <Layout title="Beau Crisp - Strength & Conditioning">
   <section
-    class="h-[70vh] bg-hero-image-2 bg-bottom bg-cover flex flex-col justify-center"
+    class="h-[90vh] bg-hero-image-2 bg-bottom bg-cover flex flex-col justify-center"
   >
     <div class="flex flex-col items-center justify-center py-8">
       <h1
@@ -26,7 +53,7 @@ import bjj from "../assets/bjj-sepia.jpg";
         </a>
       </h1>
       <h2
-        class="text-center text-xl sm:text-2xl md:text-3xl text-slate-200 my-4 px-4"
+        class="text-center text-xl sm:text-2xl md:text-3xl text-slate-200 my-4 px-4 text-shadow-lg"
       >
         Training For Comprehensive Strength.<br /> Writing For A Comprehensive Mind.
       </h2>
@@ -40,14 +67,16 @@ import bjj from "../assets/bjj-sepia.jpg";
 
   <section class="container mx-auto py-16">
     <h2
-      class="text-3xl sm:text-4xl md:text-6xl font-customFont uppercase text-center mb-12 px-12 text-slate-800"
+      class="text-3xl sm:text-4xl md:text-6xl font-customFont uppercase text-center mb-12 px-12 text-slate-800 py-12"
     >
       It Doesn't Matter If You're 7 or 87. <br />
-      Progress can be made.
       <br />
-      starting anywhere.
+      No Matter Where You Are In Your Journey, Progress can be made.
+      <br />
     </h2>
-    <div class="flex flex-row justify-center md:flex-row gap-8 mx-auto">
+    <div
+      class="flex flex-col md:flex-row justify-center md:flex-row gap-8 mx-auto"
+    >
       <div class="w-full md:w-1/2">
         <Image
           src={bjj}
@@ -59,10 +88,20 @@ import bjj from "../assets/bjj-sepia.jpg";
         />
       </div>
       <div class="w-full md:w-1/2">
-        <p class="text-sm md:text-xl">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-          quos.
-        </p>
+        {
+          posts.map((post: any) => (
+            <div class="bg-slate-200 p-4 my-3 rounded-lg shadow">
+              <h3 class="text-lg font-bold">{post.title}</h3>
+              <p class="text-sm text-gray-600">{post.excerpt}</p>
+              <a
+                href={`/blog/${post.slug.current}`}
+                class="inline-block mt-4 text-gray-900 font-medium hover:underline"
+              >
+                Read more →
+              </a>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
