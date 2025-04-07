@@ -65,7 +65,7 @@ const posts = await client.fetch(`
     </div>
   </section>
 
-  <section class="container mx-auto py-16">
+  <section class="container mx-auto py-16 px-8">
     <h2
       class="text-3xl sm:text-4xl md:text-6xl font-customFont uppercase text-center mb-12 px-12 text-slate-800 py-12"
     >
@@ -87,10 +87,10 @@ const posts = await client.fetch(`
           fit="cover"
         />
       </div>
-      <div class="w-full md:w-1/2">
+      <!--       <div class="w-full md:w-1/2">
         {
           posts.map((post: any) => (
-            <div class="bg-slate-200 p-4 my-3 rounded-lg shadow">
+            <div class="bg-stone-200 p-4 my-8 rounded-lg shadow-lg">
               <h3 class="text-lg font-bold">{post.title}</h3>
               <p class="text-sm text-gray-600">{post.excerpt}</p>
               <a
@@ -102,13 +102,50 @@ const posts = await client.fetch(`
             </div>
           ))
         }
+      </div> -->
+      <div class="w-full md:w-1/2">
+        <h3
+          class="text-4xl uppercase text-center font-customFont text-slate-800 mb-8"
+        >
+          Latest Podcast Episodes
+        </h3>
+        <div class="p-4 my-8">
+          <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/episode/3HHtK8fAooxlh8Ez2Eacmi/video?utm_source=generator"
+            width="624"
+            height="351"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>
+        <div class="p-4 my-8">
+          <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/episode/67lzxa9SC5tNd2qLQOVsdw/video?utm_source=generator"
+            width="624"
+            height="351"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>
+        <div class="p-4 my-8">
+          <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/episode/2aENdCBArg806rTbiQ92IL/video?utm_source=generator"
+            width="624"
+            height="351"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"></iframe>
+        </div>
       </div>
     </div>
   </section>
 </Layout>
 
 <script type="text/javascript">
-  var TxtType = function (el, toRotate, period) {
+  const TxtType = function (el, toRotate, period) {
     this.toRotate = toRotate;
     this.el = el;
     this.loopNum = 0;
@@ -119,8 +156,8 @@ const posts = await client.fetch(`
   };
 
   TxtType.prototype.tick = function () {
-    var i = this.loopNum % this.toRotate.length;
-    var fullTxt = this.toRotate[i];
+    let i = this.loopNum % this.toRotate.length;
+    let fullTxt = this.toRotate[i];
 
     if (this.isDeleting) {
       this.txt = fullTxt.substring(0, this.txt.length - 1);
@@ -130,8 +167,8 @@ const posts = await client.fetch(`
 
     this.el.innerHTML = '<span class="wrap">' + this.txt + "</span>";
 
-    var that = this;
-    var delta = 200 - Math.random() * 100;
+    let that = this;
+    let delta = 200 - Math.random() * 100;
 
     if (this.isDeleting) {
       delta /= 2;
@@ -152,10 +189,10 @@ const posts = await client.fetch(`
   };
 
   window.onload = function () {
-    var elements = document.getElementsByClassName("typewrite");
-    for (var i = 0; i < elements.length; i++) {
-      var toRotate = elements[i].getAttribute("data-type");
-      var period = elements[i].getAttribute("data-period");
+    const elements = document.getElementsByClassName("typewrite");
+    for (let i = 0; i < elements.length; i++) {
+      const toRotate = elements[i].getAttribute("data-type");
+      const period = elements[i].getAttribute("data-period");
       if (toRotate) {
         new TxtType(elements[i], JSON.parse(toRotate), period);
       }
