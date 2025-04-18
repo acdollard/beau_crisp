@@ -53,12 +53,6 @@ const authOptions = {
   }).toString(),
 };
 
-console.log("Client ID:", import.meta.env.SPOTIFY_CLIENT_ID);
-console.log(
-  "Client Secret:",
-  import.meta.env.SPOTIFY_CLIENT_SECRET ? "Set" : "Not Set"
-);
-
 const response = await fetch(authOptions.url, {
   method: authOptions.method,
   headers: authOptions.headers,
@@ -68,6 +62,19 @@ const data = await response.json();
 const accessToken = data.access_token;
 
 console.log(data);
+
+const podcastEpisodes = await fetch(
+  "https://api.spotify.com/v1/shows/6kVyePtw85mqjZvWqqQa7s/episodes",
+  {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  }
+);
+
+const episodesData = await podcastEpisodes.json();
+console.log(episodesData);
 ---
 
 <Layout title="Beau Crisp - Strength & Conditioning">
