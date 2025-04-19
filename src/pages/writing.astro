@@ -27,10 +27,10 @@ const posts = await client.fetch(`
 
 <Layout title="Blog - Beau Crisp">
   <section class="min-h-[96vh] pt-48">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-6xl font-customFont mb-8">Writing</h1>
+    <div class="mx-auto">
+      <h1 class="text-6xl font-customFont mb-8 pt-16 text-center">Writing</h1>
 
-      <div class="grid gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
         {
           posts.map((post: any) => (
             <article class="bg-stone-200 p-6 rounded-lg shadow">

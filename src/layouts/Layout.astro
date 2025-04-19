@@ -32,7 +32,7 @@ const { title } = Astro.props;
     <header
       class="bg-stone-200 fixed top-0 left-0 right-0 z-50 shadow font-customFont text-2xl tracking-wide"
     >
-      <nav class="container mx-auto px-4 py-6">
+      <nav class="container mx-auto px-4 py-4">
         <div class="flex justify-between items-center">
           <a href="/" class="text-xl font-bold text-stone-300"
             ><Image src={logo} alt="Beau Crisp Logo" width={150} /></a
@@ -66,14 +66,14 @@ const { title } = Astro.props;
               >Home</a
             >
             <a
-              href="/writing"
-              class="text-zinc-800 hover:text-rose-600 transition-colors duration-200 text-3xl"
-              >Writing</a
-            >
-            <a
               href="/podcast"
               class="text-zinc-800 hover:text-rose-600 transition-colors duration-200 text-3xl"
               >Podcast</a
+            >
+            <a
+              href="/writing"
+              class="text-zinc-800 hover:text-rose-600 transition-colors duration-200 text-3xl"
+              >Writing</a
             >
             <a
               href="/about"
@@ -99,14 +99,14 @@ const { title } = Astro.props;
             >Home</a
           >
           <a
-            href="/writing"
-            class="block text-zinc-800 hover:text-rose-600 transition-colors duration-200"
-            >Writing</a
-          >
-          <a
             href="/podcast"
             class="block text-zinc-800 hover:text-rose-600 transition-colors duration-200"
             >Podcast</a
+          >
+          <a
+            href="/writing"
+            class="block text-zinc-800 hover:text-rose-600 transition-colors duration-200"
+            >Writing</a
           >
           <a
             href="/about"
