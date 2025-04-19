@@ -4,5 +4,10 @@
 
 [[redirects]]
   from = "/studio/*"
-  to = "https://your-studio-site.netlify.app/:splat"
+  to = "buried-fe.netlify.app/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
   status = 200 
