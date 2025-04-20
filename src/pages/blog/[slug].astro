@@ -46,7 +46,7 @@ if (!post) {
 ---
 
 <Layout title={`${post.title} - Beau Crisp Blog`}>
-  <article class="max-w-3xl mx-auto">
+  <article class="max-w-3xl mx-auto px-4 md:px-0 min-h-[96vh] pt-48">
     {
       post.mainImage && (
         <img
@@ -79,6 +79,14 @@ if (!post) {
           }
         })
       }
+    </div>
+    <div class="flex justify-center">
+      <a
+        href="/writing"
+        class="bg-rose-800 hover:bg-rose-700 text-white px-4 py-2 transition-colors duration-200 shadow-lg md:text-2xl pb-2"
+      >
+        Back to Writing
+      </a>
     </div>
   </article>
 </Layout>
