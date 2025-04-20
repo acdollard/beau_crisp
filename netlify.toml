@@ -1,10 +1,10 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  functions = "dist/server"
+  functions = "dist"
 
 [functions]
-  included_files = ["dist/server/**/*.mjs"]
+  included_files = ["dist/**/*.mjs"]
 
 [[redirects]]
   from = "/studio/*"
