@@ -12,7 +12,7 @@ export default defineConfig({
   integrations: [tailwind()],
   vite: {
     build: {
-      target: "esm",
+      target: "esnext",
     },
   },
 });
