@@ -3,6 +3,9 @@
   publish = "dist"
   functions = "dist/server"
 
+[functions]
+  included_files = ["dist/server/**/*.mjs"]
+
 [[redirects]]
   from = "/studio/*"
   to = "buried-fe.netlify.app/:splat"

@@ -10,4 +10,9 @@ export default defineConfig({
     mode: "middleware",
   }),
   integrations: [tailwind()],
+  vite: {
+    build: {
+      target: "esnext",
+    },
+  },
 });
