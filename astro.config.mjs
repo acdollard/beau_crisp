@@ -8,6 +8,9 @@ export default defineConfig({
   output: "server",
   adapter: netlify(),
   integrations: [tailwind()],
+  experimental: {
+    session: true,
+  },
   vite: {
     build: {
       target: "esnext",
