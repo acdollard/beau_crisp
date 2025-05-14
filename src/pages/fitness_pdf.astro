@@ -1,0 +1,34 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Free Nutrition Guide - Beau Crisp">
+  <section class="min-h-[50vh] pt-48 bg-bjj-hero bg-cover bg-bottom">
+    <div class="mx-auto">
+      <h1
+        class="text-5xl font-customFont mb-8 md:pt-16 text-center text-slate-100 px-4"
+      >
+        DOWNLOAD THIS FREE NUTRITION GUIDE
+      </h1>
+      <div class="mt-4 text-center">
+        <a
+          href="/nutrition.pdf"
+          download
+          class="inline-block bg-rose-800 hover:bg-rose-700 text-white px-6 py-3 rounded-md transition-colors"
+        >
+          Download PDF
+        </a>
+      </div>
+    </div>
+  </section>
+  <div class="max-w-3xl mx-auto p-4">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <iframe
+        src="/nutrition.pdf"
+        width="100%"
+        height="800"
+        class="w-full"
+        title="Free Nutrition Guide"></iframe>
+    </div>
+  </div>
+</Layout>

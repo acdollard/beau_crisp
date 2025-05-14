@@ -26,42 +26,40 @@ const posts = await client.fetch(`
 ---
 
 <Layout title="Blog - Beau Crisp">
-  <section class="md:min-h-[96vh] pt-48">
+  <section class="min-h-[50vh] pt-48 bg-bjj-hero bg-cover bg-bottom">
     <div class="mx-auto">
-      <h1 class="text-6xl font-customFont mb-8 md:pt-16 text-center">
+      <h1
+        class="text-6xl font-customFont mb-8 md:pt-16 text-center text-slate-100"
+      >
         Writing
       </h1>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-        {
-          posts.map((post: any) => (
-            <article class="bg-stone-200 p-6 rounded-lg shadow">
-              {post.mainImage && (
-                <img
-                  src={post.mainImage.asset.url}
-                  alt={post.title}
-                  class="w-full h-48 object-cover rounded-lg mb-4"
-                />
-              )}
-              <h2 class="text-3xl font-customFont mb-2">
-                <a
-                  href={`/blog/${post.slug.current}`}
-                  class="hover:text-rose-600"
-                >
-                  {post.title}
-                </a>
-              </h2>
-              <p class="text-gray-600 mb-4">
-                {new Date(post.publishedAt).toLocaleDateString()}
-              </p>
-              {post.excerpt && <p class="text-gray-700">{post.excerpt}</p>}
-              <button class="bg-rose-700 hover:bg-rose-600 text-white px-4 py-2 mt-4 uppercase">
-                <a href={`/blog/${post.slug.current}`}>Read More</a>
-              </button>
-            </article>
-          ))
-        }
-      </div>
     </div>
   </section>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+    {
+      posts.map((post: any) => (
+        <article class="bg-stone-200 p-6 rounded-lg shadow">
+          {post.mainImage && (
+            <img
+              src={post.mainImage.asset.url}
+              alt={post.title}
+              class="w-full h-48 object-cover rounded-lg mb-4"
+            />
+          )}
+          <h2 class="text-3xl font-customFont mb-2">
+            <a href={`/blog/${post.slug.current}`} class="hover:text-rose-600">
+              {post.title}
+            </a>
+          </h2>
+          <p class="text-gray-600 mb-4">
+            {new Date(post.publishedAt).toLocaleDateString()}
+          </p>
+          {post.excerpt && <p class="text-gray-700">{post.excerpt}</p>}
+          <button class="bg-rose-700 hover:bg-rose-600 text-white px-4 py-2 mt-4 uppercase">
+            <a href={`/blog/${post.slug.current}`}>Read More</a>
+          </button>
+        </article>
+      ))
+    }
+  </div>
 </Layout>

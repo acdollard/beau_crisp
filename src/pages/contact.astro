@@ -15,17 +15,19 @@ if (Astro.request.method === "POST") {
 ---
 
 <Layout title="Contact - Buried In The Bones">
-  <section class="container mx-auto py-16 px-4 pt-48 min-h-[96vh]">
-    <div class="max-w-2xl mx-auto mt">
-      <h1 class="text-6xl font-customFont uppercase text-center mb-12 md:pt-16">
-        Contact
-      </h1>
-      <p class="text-2xl text-gray-800 mb-8 text-left mx-8">
-        Reach out regarding anything from feedback on the podcast, to inquiries
-        about strength and conditioning services, or just to say hello. I'd love
-        to hear from you.
-      </p>
-      <form method="POST" class="space-y-6 bg-zinc-100 p-8 shadow-lg">
+  <section class="min-h-[50vh] pt-48 bg-bjj-hero bg-cover bg-bottom">
+    <h1
+      class="text-6xl font-customFont uppercase text-center mb-12 md:pt-16 text-slate-100"
+    >
+      Contact
+    </h1>
+    <p class="text-2xl text-slate-100 mb-8 text-center mx-8">
+      beaucrisp.d@gmail.com
+    </p>
+  </section>
+
+  <div class="max-w-2xl mx-auto mt">
+    <!-- <form method="POST" class="space-y-6 bg-zinc-100 p-8 shadow-lg">
         <div>
           <label
             for="name"
@@ -77,7 +79,6 @@ if (Astro.request.method === "POST") {
         >
           Send Message
         </button>
-      </form>
-    </div>
-  </section>
+      </form> -->
+  </div>
 </Layout>
