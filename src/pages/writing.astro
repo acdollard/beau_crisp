@@ -26,10 +26,10 @@ const posts = await client.fetch(`
 ---
 
 <Layout title="Blog - Beau Crisp">
-  <section class="min-h-[50vh] pt-48 bg-bjj-hero bg-cover bg-bottom">
+  <section class="min-h-[50vh] pt-48 hero-image bg-bottom md:bg-center">
     <div class="mx-auto">
       <h1
-        class="text-6xl font-customFont mb-8 md:pt-16 text-center text-slate-100"
+        class="text-5xl md:text-8xl font-customFont mb-8 md:mt-16 text-center text-rose-600 bg-stone-900 bg-opacity-80 block w-fit mx-auto p-4 rounded-lg animate-fade-in"
       >
         Writing
       </h1>
@@ -55,7 +55,7 @@ const posts = await client.fetch(`
             {new Date(post.publishedAt).toLocaleDateString()}
           </p>
           {post.excerpt && <p class="text-gray-700">{post.excerpt}</p>}
-          <button class="bg-rose-700 hover:bg-rose-600 text-white px-4 py-2 mt-4 uppercase">
+          <button class="bg-rose-700 hover:bg-rose-600 text-white px-4 py-2 mt-4 uppercase rounded-lg">
             <a href={`/blog/${post.slug.current}`}>Read More</a>
           </button>
         </article>
@@ -63,3 +63,24 @@ const posts = await client.fetch(`
     }
   </div>
 </Layout>
+
+<style>
+  .hero-image {
+    background-image: url("../assets/cactus.png");
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+</style>

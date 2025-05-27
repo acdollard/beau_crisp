@@ -5,16 +5,11 @@ export default {
     extend: {
       fontFamily: {
         customFont: ["Bebas Neue", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
       fontWeight: {
         light: "300",
         normal: "400",
-      },
-      backgroundImage: {
-        "hero-image": "url('/images/barbell.jpg')",
-        "hero-image-2": "url('/images/people-lifting-sepia.jpg')",
-        "hero-image-3": "url('/images/paper.jpg')",
-        "bjj-hero": "url('/images/bjj-throw.jpg')",
       },
       textShadow: {
         lg: "2px 2px 4px rgba(0, 0, 0, 0.5)",

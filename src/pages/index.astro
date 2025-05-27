@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { createClient } from "@sanity/client";
 import bjj from "../assets/bjj-sepia.jpg";
+import IMG_1328 from "../assets/IMG_1328_1.png";
+import IMG_1348 from "../assets/IMG_1348_1.png";
 import { requestHasLocale } from "astro:i18n";
 
 interface Post {
@@ -91,46 +93,66 @@ console.log(episodesData);
 ---
 
 <Layout title="Beau Crisp - Strength & Conditioning">
-  <section
-    class="h-[70vh] bg-bjj-hero bg-bottom bg-cover flex flex-col justify-center"
-  >
-    <div class="flex flex-col items-center justify-center">
-      <div class="h-[44px] sm:h-[66px] md:h-[115px]">
-        <h1
-          class="text-6xl md:text-8xl text-center font-customFont text-slate-200 px-4 pt-8"
-        >
-          <a
-            href=""
-            class="typewrite"
-            data-period="2000"
-            data-type='["BURIED IN THE BONES. . . ", "MOVE OR EXPIRE. . . ", "COMPLACENCY IS EVIL. . . "]'
-          >
-            <span class="wrap"></span>
-          </a>
-        </h1>
-      </div>
-      <h2
-        class="text-center text-xl sm:text-2xl md:text-4xl text-slate-200 my-4 px-4 pb-12 pt-36 md:pt-8"
+  <section class="min-h-[50vh] pt-48 hero-image bg-bottom md:bg-center">
+    <div class="mx-auto">
+      <h1
+        class="text-5xl md:text-8xl font-customFont mb-8 md:mt-16 text-center text-rose-600 bg-stone-900 bg-opacity-80 block w-fit mx-auto p-4 rounded-lg animate-fade-in"
       >
-        Training For Comprehensive Strength.
-        <br />Writing For A Comprehensive Mind.
-      </h2>
-      <button
-        class="bg-rose-800 hover:bg-rose-700 text-white hover:text-white px-6 py-4 transition-colors duration-200 shadow-lg md:text-2xl"
-      >
-        <a href="/contact">Get Strong</a>
-      </button>
+        Buried In The Bones
+      </h1>
     </div>
   </section>
 
-  <section class="container mx-auto pb-16 px-8">
+  <section class="container mx-auto pb-16 px-8 max-w-7xl">
     <h2
-      class="text-4xl md:text-6xl font-customFont uppercase text-center px-12 text-slate-800 text-shadow-sm py-12 md:py-24"
+      class="text-4xl md:text-6xl font-customFont text-center px-12 text-slate-800 py-12 md:py-24 animate-fade-in delay-1000"
     >
-      Buried In The Bones is a Podcast about the <br /><span
-        class="text-rose-700 text-shadow-lg">Philosophy of Effort.</span
-      >
+      <span class="text-rose-500 font-shadow-lg">Beau Crisp</span> wants to make
+      you strong. <br />In this podcast series, he shares his knowledge and
+      insight on this lifelong journey.
     </h2>
+    <button
+      class="bg-rose-800 hover:bg-rose-700 text-white px-10 py-6 rounded-lg transition-colors duration-300 mx-auto block text-2xl"
+    >
+      <a href="/podcast">Listen Now</a>
+    </button>
+  </section>
+
+  <section class="container mx-auto py-24 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+        <div class="w-full md:w-1/2 relative">
+          <div
+            class="absolute -inset-4 bg-rose-100 rounded-lg transform -rotate-2 animate-float"
+          >
+          </div>
+          <Image
+            src={IMG_1328}
+            alt="Strength Training"
+            class="relative rounded-lg shadow-xl w-full h-auto animate-fade-in"
+            width={600}
+            height={400}
+          />
+        </div>
+        <div class="w-full md:w-1/2 space-y-6 animate-fade-in-delayed">
+          <h2 class="text-4xl md:text-5xl font-customFont text-slate-800">
+            Comprehensive Strength Training
+          </h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Discover a holistic approach to strength and conditioning that goes
+            beyond conventional training methods. Our programs are designed to
+            enhance not just physical power, but mental resilience and technical
+            proficiency.
+          </p>
+          <a
+            href="/contact"
+            class="inline-block bg-rose-800 hover:bg-rose-700 text-white px-8 py-3 rounded-lg transition-colors duration-300"
+          >
+            Start Your Journey
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="container mx-auto py-16 bg-stone-100">
@@ -154,6 +176,7 @@ console.log(episodesData);
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
                   class="mb-4"
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
                 />
                 <h3 class="text-2xl font-customFont mb-2">{episode.name}</h3>
                 <p class="text-gray-600 mb-4 line-clamp-3">
@@ -167,7 +190,7 @@ console.log(episodesData);
                     href={episode.external_urls.spotify}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="bg-rose-800 hover:bg-rose-700 text-white px-4 py-2 transition-colors"
+                    class="bg-rose-800 hover:bg-rose-700 text-white px-4 py-2 transition-colors rounded-lg"
                   >
                     Listen In Spotify
                   </a>
@@ -179,14 +202,51 @@ console.log(episodesData);
     </div>
     <div class="flex justify-center h-100">
       <button
-        class="bg-rose-800 hover:bg-rose-700 hover:shadow-lg text-white hover:text-white text-xl px-6 py-4 mt-12 transition-colors duration-200"
+        class="bg-rose-800 hover:bg-rose-700 hover:shadow-lg text-white hover:text-white text-xl px-6 py-4 mt-12 transition-colors duration-200 rounded-lg"
       >
         <a href="/podcast">See All Episodes</a>
       </button>
     </div>
   </section>
 
-  <section class="container mx-auto py-16"></section>
+  <section class="container mx-auto py-24 px-4 bg-stone-50">
+    <div class="max-w-7xl mx-auto">
+      <div
+        class="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-16"
+      >
+        <div class="w-full md:w-1/2 relative">
+          <div
+            class="absolute -inset-4 bg-rose-100 rounded-lg transform rotate-2 animate-float-reverse"
+          >
+          </div>
+          <Image
+            src={IMG_1348}
+            alt="Mind-Body Connection"
+            class="relative rounded-lg shadow-xl w-full h-auto animate-fade-in"
+            width={600}
+            height={400}
+          />
+        </div>
+        <div class="w-full md:w-1/2 space-y-6 animate-fade-in-delayed">
+          <h2 class="text-4xl md:text-5xl font-customFont text-slate-800">
+            Mind-Body Connection
+          </h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Experience training that bridges the gap between physical
+            performance and mental clarity. Our approach integrates traditional
+            strength methods with modern movement science to create lasting
+            results.
+          </p>
+          <a
+            href="/about"
+            class="inline-block bg-rose-800 hover:bg-rose-700 text-white px-8 py-3 rounded-lg transition-colors duration-300"
+          >
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <script type="text/javascript">
     const TxtType = function (el, toRotate, period) {
@@ -250,3 +310,63 @@ console.log(episodesData);
     };
   </script>
 </Layout>
+
+<style>
+  .hero-image {
+    background-image: url("../assets/cactus.png");
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(-2deg);
+    }
+  }
+
+  @keyframes float-reverse {
+    0%,
+    100% {
+      transform: translateY(0) rotate(2deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(2deg);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-reverse {
+    animation: float-reverse 6s ease-in-out infinite;
+  }
+
+  .animate-fade-in-delayed {
+    animation: fadeInUp 1s ease-out 0.3s forwards;
+    opacity: 0;
+  }
+
+  @media (max-width: 768px) {
+    .hero-image {
+      background-size: cover;
+    }
+  }
+</style>
