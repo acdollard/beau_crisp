@@ -52,6 +52,21 @@ const posts = await client.fetch(`
   }[0...3]
 `);
 
+const recentPosts = await client.fetch(`
+  *[_type == "post"] | order(publishedAt desc)[0...6] {
+    title,
+    slug,
+    publishedAt,
+    excerpt,
+    mainImage {
+      asset-> {
+        _id,
+        url
+      }
+    }
+  }
+`);
+
 const authOptions = {
   method: "POST",
   url: "https://accounts.spotify.com/api/token",
@@ -105,54 +120,23 @@ console.log(episodesData);
 
   <section class="container mx-auto pb-16 px-8 max-w-7xl">
     <h2
-      class="text-4xl md:text-6xl font-customFont text-center px-12 text-slate-800 py-12 md:py-24 animate-fade-in delay-1000"
+      class="text-4xl md:text-5xl font-customFont text-center px-12 text-slate-800 py-12 md:py-24 animate-fade-in delay-1000"
     >
-      <span class="text-rose-500 font-shadow-lg">Beau Crisp</span> wants to make
-      you strong. <br />In this podcast series, he shares his knowledge and
-      insight on this lifelong journey.
+      <span class="text-rose-600 font-shadow-lg">Beau Crisp</span> is a trainer,
+      athelete, writer, and philosopher. He Believes:
+      <br />Movement Is life,
+      <br />Complacency is death,
+      <br />And most importantly,
+      <br />
+      <br /><span class="text-rose-600 text-6xl text-shadow-lg"
+        >You already have everything you need.</span
+      >
     </h2>
     <button
-      class="bg-rose-800 hover:bg-rose-700 text-white px-10 py-6 rounded-lg transition-colors duration-300 mx-auto block text-2xl"
+      class="bg-rose-800 hover:bg-rose-700 text-white px-10 py-6 rounded-md transition-colors duration-300 mx-auto block text-2xl"
     >
-      <a href="/podcast">Listen Now</a>
+      <a href="/podcast">Listen To The Buried In The Bones Podcast</a>
     </button>
-  </section>
-
-  <section class="container mx-auto py-24 px-4">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-        <div class="w-full md:w-1/2 relative">
-          <div
-            class="absolute -inset-4 bg-rose-100 rounded-lg transform -rotate-2 animate-float"
-          >
-          </div>
-          <Image
-            src={IMG_1328}
-            alt="Strength Training"
-            class="relative rounded-lg shadow-xl w-full h-auto animate-fade-in"
-            width={600}
-            height={400}
-          />
-        </div>
-        <div class="w-full md:w-1/2 space-y-6 animate-fade-in-delayed">
-          <h2 class="text-4xl md:text-5xl font-customFont text-slate-800">
-            Comprehensive Strength Training
-          </h2>
-          <p class="text-lg text-slate-600 leading-relaxed">
-            Discover a holistic approach to strength and conditioning that goes
-            beyond conventional training methods. Our programs are designed to
-            enhance not just physical power, but mental resilience and technical
-            proficiency.
-          </p>
-          <a
-            href="/contact"
-            class="inline-block bg-rose-800 hover:bg-rose-700 text-white px-8 py-3 rounded-lg transition-colors duration-300"
-          >
-            Start Your Journey
-          </a>
-        </div>
-      </div>
-    </div>
   </section>
 
   <section class="container mx-auto py-16 bg-stone-100">
@@ -209,6 +193,92 @@ console.log(episodesData);
     </div>
   </section>
 
+  <section class="container mx-auto py-24 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+        <div class="w-full md:w-1/2 relative">
+          <div
+            class="absolute -inset-4 bg-slate-600 rounded-lg transform -rotate-2 animate-float"
+          >
+          </div>
+          <Image
+            src={IMG_1328}
+            alt="Strength Training"
+            class="relative rounded-lg shadow-xl w-full h-auto animate-fade-in"
+          />
+        </div>
+        <div class="w-full md:w-1/2 space-y-6 animate-fade-in-delayed">
+          <h2 class="text-4xl md:text-5xl font-customFont text-slate-800">
+            Comprehensive Strength Training
+          </h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            Discover a holistic approach to strength and conditioning that goes
+            beyond conventional training methods. Our programs are designed to
+            enhance not just physical power, but mental resilience and technical
+            proficiency.
+          </p>
+          <a
+            href="/contact"
+            class="inline-block bg-rose-800 hover:bg-rose-700 text-white px-8 py-3 rounded-lg transition-colors duration-300"
+          >
+            Start Your Journey
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container mx-auto py-24 px-4 bg-stone-50">
+    <h2
+      class="text-6xl font-customFont uppercase text-center mb-12 px-12 text-slate-800"
+    >
+      Recent Writing
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+      {
+        recentPosts.map((post: any) => (
+          <article class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            {post.mainImage && (
+              <img
+                src={post.mainImage.asset.url}
+                alt={post.title}
+                class="w-full h-48 object-cover rounded-lg mb-4"
+              />
+            )}
+            <h3 class="text-2xl font-customFont mb-2">
+              <a
+                href={`/blog/${post.slug.current}`}
+                class="hover:text-rose-600 transition-colors"
+              >
+                {post.title}
+              </a>
+            </h3>
+            <p class="text-gray-600 mb-4">
+              {new Date(post.publishedAt).toLocaleDateString()}
+            </p>
+            {post.excerpt && (
+              <p class="text-gray-700 mb-4 line-clamp-3">{post.excerpt}</p>
+            )}
+            <a
+              href={`/blog/${post.slug.current}`}
+              class="inline-block bg-rose-800 hover:bg-rose-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              Read More
+            </a>
+          </article>
+        ))
+      }
+    </div>
+    <div class="flex justify-center mt-12">
+      <a
+        href="/writing"
+        class="bg-rose-800 hover:bg-rose-700 text-white px-6 py-3 rounded-lg transition-colors duration-300"
+      >
+        View All Writing
+      </a>
+    </div>
+  </section>
+
   <section class="container mx-auto py-24 px-4 bg-stone-50">
     <div class="max-w-7xl mx-auto">
       <div
@@ -216,15 +286,13 @@ console.log(episodesData);
       >
         <div class="w-full md:w-1/2 relative">
           <div
-            class="absolute -inset-4 bg-rose-100 rounded-lg transform rotate-2 animate-float-reverse"
+            class="absolute -inset-4 bg-slate-600 rounded-lg transform rotate-2 animate-float-reverse"
           >
           </div>
           <Image
             src={IMG_1348}
             alt="Mind-Body Connection"
             class="relative rounded-lg shadow-xl w-full h-auto animate-fade-in"
-            width={600}
-            height={400}
           />
         </div>
         <div class="w-full md:w-1/2 space-y-6 animate-fade-in-delayed">
