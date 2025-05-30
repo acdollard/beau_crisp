@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         customFont: ["Bebas Neue", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
+        oswald: ["Oswald", "sans-serif"],
       },
       fontWeight: {
         light: "300",

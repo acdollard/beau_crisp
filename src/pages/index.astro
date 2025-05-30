@@ -2,10 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { createClient } from "@sanity/client";
-import bjj from "../assets/bjj-sepia.jpg";
 import IMG_1328 from "../assets/IMG_1328_1.png";
 import IMG_1348 from "../assets/IMG_1348_1.png";
-import { requestHasLocale } from "astro:i18n";
+import young_beau from "../assets/young-beau.png";
 
 interface Post {
   title: string;
@@ -115,31 +114,53 @@ console.log(episodesData);
       >
         Buried In The Bones
       </h1>
+      <h2
+        class="text-2xl md:text-4xl font-oswald text-center text-slate-100 bg-stone-900 bg-opacity-80 block w-fit mx-auto p-4 rounded-lg animate-fade-in"
+      >
+        A Podcast About Finding Strength Within.
+      </h2>
     </div>
   </section>
 
-  <section class="container mx-auto pb-16 px-8 max-w-7xl">
-    <h2
-      class="text-4xl md:text-5xl font-customFont text-center px-12 text-slate-800 py-12 md:py-24 animate-fade-in delay-1000"
-    >
-      <span class="text-rose-600 font-shadow-lg">Beau Crisp</span> is a trainer,
-      athelete, writer, and philosopher. He Believes:
-      <br />Movement Is life,
-      <br />Complacency is death,
-      <br />And most importantly,
-      <br />
-      <br /><span class="text-rose-600 text-6xl text-shadow-lg"
-        >You already have everything you need.</span
-      >
-    </h2>
-    <button
-      class="bg-rose-800 hover:bg-rose-700 text-white px-10 py-6 rounded-md transition-colors duration-300 mx-auto block text-2xl"
-    >
-      <a href="/podcast">Listen To The Buried In The Bones Podcast</a>
-    </button>
+  <section class="container mx-auto py-24 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+        <div class="w-full md:w-1/2 relative">
+          <div
+            class="absolute -inset-4 bg-stone-200 rounded-lg transform -rotate-2 animate-float"
+          >
+          </div>
+          <Image
+            src={young_beau}
+            alt="Strength Training"
+            class="relative rounded-lg shadow-xl w-full h-auto animate-fade-in"
+          />
+        </div>
+        <div class="w-full md:w-1/2 space-y-6 animate-fade-in-delayed">
+          <h2
+            class="text-4xl md:text-5xl font-oswald text-center px-12 text-slate-800 py-12 md:py-24 animate-fade-in delay-1000"
+          >
+            <span class="text-rose-600 font-shadow-lg">Beau Crisp</span> is a trainer,
+            athelete, writer, and philosopher. He believes:<br />
+            <br />Movement is life,
+            <br />Complacency is death,
+            <br />and most importantly. . .
+            <br />
+            <br /><span class="text-rose-600 text-6xl text-shadow-lg"
+              >You already have everything you need.</span
+            >
+          </h2>
+          <button
+            class="bg-rose-800 hover:bg-rose-700 text-white px-10 py-6 rounded-md transition-colors duration-300 mx-auto block text-2xl"
+          >
+            <a href="/podcast">Listen To The Buried In The Bones Podcast</a>
+          </button>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="container mx-auto py-16 bg-stone-100">
+  <section class="container mx-auto py-16 bg-stone-200 max-w-7xl">
     <h2
       class="text-6xl font-customFont uppercase text-center mb-12 px-12 text-slate-800"
     >
@@ -198,7 +219,7 @@ console.log(episodesData);
       <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
         <div class="w-full md:w-1/2 relative">
           <div
-            class="absolute -inset-4 bg-slate-600 rounded-lg transform -rotate-2 animate-float"
+            class="absolute -inset-4 bg-stone-200 rounded-lg transform -rotate-2 animate-float"
           >
           </div>
           <Image
@@ -209,13 +230,15 @@ console.log(episodesData);
         </div>
         <div class="w-full md:w-1/2 space-y-6 animate-fade-in-delayed">
           <h2 class="text-4xl md:text-5xl font-customFont text-slate-800">
-            Comprehensive Strength Training
+            What Is Strength?
           </h2>
           <p class="text-lg text-slate-600 leading-relaxed">
-            Discover a holistic approach to strength and conditioning that goes
-            beyond conventional training methods. Our programs are designed to
-            enhance not just physical power, but mental resilience and technical
-            proficiency.
+            It's muscle, but it's not just muscle. It's the nervous system, but
+            it's not just the nervous system. It's the mind, but it's not just
+            the mind. It's the spirit, but it's not just. . . you get the idea.<br
+            />
+            With BS in Kinesiology, CSCS, FRCms, CFSC, TPI L2's, and a handful of
+            other certifications and credentials, I know how to get you strong.
           </p>
           <a
             href="/contact"
@@ -228,7 +251,7 @@ console.log(episodesData);
     </div>
   </section>
 
-  <section class="container mx-auto py-24 px-4 bg-stone-50">
+  <section class="container mx-auto py-24 px-4 bg-stone-200 max-w-7xl">
     <h2
       class="text-6xl font-customFont uppercase text-center mb-12 px-12 text-slate-800"
     >
@@ -279,14 +302,14 @@ console.log(episodesData);
     </div>
   </section>
 
-  <section class="container mx-auto py-24 px-4 bg-stone-50">
+  <section class="container mx-auto py-24 px-4 max-w-7xl">
     <div class="max-w-7xl mx-auto">
       <div
         class="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-16"
       >
         <div class="w-full md:w-1/2 relative">
           <div
-            class="absolute -inset-4 bg-slate-600 rounded-lg transform rotate-2 animate-float-reverse"
+            class="absolute -inset-4 bg-stone-200 rounded-lg transform rotate-2 animate-float-reverse"
           >
           </div>
           <Image
@@ -297,13 +320,20 @@ console.log(episodesData);
         </div>
         <div class="w-full md:w-1/2 space-y-6 animate-fade-in-delayed">
           <h2 class="text-4xl md:text-5xl font-customFont text-slate-800">
-            Mind-Body Connection
+            Why I'm Here
           </h2>
           <p class="text-lg text-slate-600 leading-relaxed">
-            Experience training that bridges the gap between physical
-            performance and mental clarity. Our approach integrates traditional
-            strength methods with modern movement science to create lasting
-            results.
+            I didn't have the easiest path to where I am today. Going from a
+            broke twenty-something with nothing to my name but $80, a
+            kettlebell, and an apartment with a cockroach infestation, to
+            getting the chance to work with some of the world's greatest
+            atheletes, to now owning a home, getting married to an incredible
+            woman, and leading a team of coaches who are as passionate as I am,
+            I know the journey isn't over. I wanted to start this podcast and
+            page to keep track of all the bumps, bruises, and lessons I've
+            learned and continue to learn. And if they help you too, then every
+            bump and bruise will have been worth it. Please enjoy the podcast
+            and the writing. And if you have any questions, please reach out.
           </p>
           <a
             href="/about"
@@ -381,7 +411,7 @@ console.log(episodesData);
 
 <style>
   .hero-image {
-    background-image: url("../assets/cactus.png");
+    background-image: url("../assets/x-ray.png");
   }
 
   @keyframes fadeInUp {
