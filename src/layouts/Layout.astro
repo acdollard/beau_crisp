@@ -27,26 +27,35 @@ const { title } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
   <body class="min-h-screen">
     <header
       class="transparent absolute top-0 left-0 right-0 z-50 font-customFont text-2xl tracking-wide"
     >
-      <nav class="mx-auto py-4 bg-stone-900">
+      <nav class="mx-auto py-4 bg-transparent">
         <div class="flex justify-between items-center px-4">
-          <a href="/" class="text-xl font-bold text-stone-800"
-            ><Image src={logo} alt="Beau Crisp Logo" width={150} /></a
+          <a href="/" class="text-xl font-bold text-floralWhite"
+            ><Image
+              src="/buried2.svg"
+              alt="Beau Crisp Logo"
+              height={100}
+              width={200}
+            /></a
           >
 
           <!-- Mobile menu button -->
           <button
             id="mobile-menu-button"
-            class="md:hidden text-slate-100 transition-transform duration-200"
+            class="md:hidden text-floralWhite transition-transform duration-200"
             aria-label="Toggle menu"
           >
             <svg
-              class="w-12 h-12"
+              class="w-16 h-16"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -63,27 +72,40 @@ const { title } = Astro.props;
           <div class="hidden md:flex space-x-8">
             <a
               href="/"
-              class="text-slate-100 hover:text-rose-600 transition-colors duration-200 text-3xl"
+              class="text-floralWhite hover:text-khaki transition-colors duration-200 text-3xl"
               >Home</a
             >
-            <a
-              href="/podcast"
-              class="text-slate-100 hover:text-rose-600 transition-colors duration-200 text-3xl"
-              >Media</a
-            >
+            <div class="relative group">
+              <span class="text-floralWhite text-3xl cursor-default">Media</span
+              >
+              <div
+                class="absolute left-0 mt-2 w-48 bg-stone-800 rounded-sm shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+              >
+                <a
+                  href="/podcast"
+                  class="block px-4 py-2 text-floralWhite hover:text-khaki hover:bg-stone-700 transition-colors duration-200 text-xl"
+                  >Podcast</a
+                >
+                <a
+                  href="/writing"
+                  class="block px-4 py-2 text-floralWhite hover:text-khaki hover:bg-stone-700 transition-colors duration-200 text-xl"
+                  >Writing</a
+                >
+              </div>
+            </div>
             <a
               href="/fitness_pdf"
-              class="text-slate-100 hover:text-rose-600 transition-colors duration-200 text-3xl"
-              >Free Nutrition Guide</a
+              class="text-floralWhite hover:text-khaki transition-colors duration-200 text-3xl"
+              >Resources</a
             >
             <a
               href="/about"
-              class="text-slate-100 hover:text-rose-600 transition-colors duration-200 text-3xl"
+              class="text-floralWhite hover:text-khaki transition-colors duration-200 text-3xl"
               >About</a
             >
             <a
               href="/contact"
-              class="text-slate-100 hover:text-rose-600 transition-colors duration-200 text-3xl"
+              class="text-floralWhite hover:text-khaki transition-colors duration-200 text-3xl"
               >Contact</a
             >
           </div>
@@ -92,42 +114,47 @@ const { title } = Astro.props;
         <!-- Mobile menu -->
         <div
           id="mobile-menu"
-          class="hidden md:hidden mt-4 space-y-4 transform transition-all duration-300 ease-in-out bg-stone-800 px-4 py-4"
+          class="hidden md:hidden mt-4 space-y-8 transform transition-all duration-300 ease-in-out bg-stone-800 px-4 py-4"
         >
           <a
             href="/"
-            class="block text-slate-100 hover:text-rose-600 transition-colors duration-200"
+            class="block text-floralWhite hover:text-khaki transition-colors duration-200"
             >Home</a
           >
           <a
             href="/podcast"
-            class="block text-slate-100 hover:text-rose-600 transition-colors duration-200"
+            class="block text-floralWhite hover:text-khaki transition-colors duration-200"
             >Podcast</a
           >
           <a
+            href="/writing"
+            class="block text-floralWhite hover:text-khaki transition-colors duration-200"
+            >Writing</a
+          >
+          <a
             href="/fitness_pdf"
-            class="block text-slate-100 hover:text-rose-600 transition-colors duration-200"
-            >Free Nutrition Guide</a
+            class="block text-floralWhite hover:text-khaki transition-colors duration-200"
+            >Resources</a
           >
           <a
             href="/about"
-            class="block text-slate-100 hover:text-rose-600 transition-colors duration-200"
+            class="block text-floralWhite hover:text-khaki transition-colors duration-200"
             >About</a
           >
           <a
             href="/contact"
-            class="block text-slate-100 hover:text-rose-600 transition-colors duration-200"
+            class="block text-floralWhite hover:text-khaki transition-colors duration-200"
             >Contact</a
           >
         </div>
       </nav>
     </header>
-    <main class="mx-auto">
+    <main class="mx-auto bg-floralWhite">
       <slot />
     </main>
-    <footer class="bg-stone-900 mt-auto">
+    <footer class="bg-ebony mt-auto">
       <div class="container mx-auto px-4 py-6 text-center">
-        <p class="text-slate-100">
+        <p class="text-floralWhite">
           &copy; {new Date().getFullYear()} Buried In The Bones. All rights reserved.
         </p>
       </div>

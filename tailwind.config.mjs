@@ -5,8 +5,8 @@ export default {
     extend: {
       fontFamily: {
         customFont: ["Bebas Neue", "sans-serif"],
-        poppins: ["Poppins", "sans-serif"],
-        oswald: ["Oswald", "sans-serif"],
+        openSans: ["Open Sans", "sans-serif"],
+        condensed: ["Open Sans Condensed", "sans-serif"],
       },
       fontWeight: {
         light: "300",
@@ -14,6 +14,13 @@ export default {
       },
       textShadow: {
         lg: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+      },
+      colors: {
+        rawUmber: "#8b5e3c",
+        jet: "#2e2e2e",
+        floralWhite: "#faf7f0",
+        ebony: "#676c58",
+        khaki: "#a39e92",
       },
     },
   },

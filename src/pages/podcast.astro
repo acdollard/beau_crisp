@@ -1,13 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { createClient } from "@sanity/client";
-
-const client = createClient({
-  projectId: "agaaxyz0",
-  dataset: "production",
-  apiVersion: "2024-03-08",
-  useCdn: true,
-});
 
 interface SpotifyEpisode {
   name: string;
@@ -61,53 +53,20 @@ const podcastEpisodes = await fetch(
 );
 
 const episodesData = await podcastEpisodes.json();
-
-const posts = await client.fetch(`
-  *[_type == "post"] | order(publishedAt desc) {
-    title,
-    slug,
-    publishedAt,
-    excerpt,
-    mainImage {
-      asset-> {
-        _id,
-        url
-      }
-    }
-  }
-`);
 ---
 
-<Layout title="Media - Buried In The Bones">
-  <section class="min-h-[50vh] pt-48 hero-image bg-center">
-    <div class="mx-auto">
+<Layout title="Podcast - Buried In The Bones">
+  <section class="min-h-[60vh] pt-48 hero-image bg-center">
+    <div class="flex flex-col items-end justify-center w-[80%]">
       <h1
-        class="text-5xl md:text-8xl font-customFont animate-fade-in mb-8 md:mt-16 text-center text-rose-600 bg-stone-900 bg-opacity-80 block w-fit mx-auto p-4 rounded-lg"
+        class="text-7xl md:text-8xl font-customFont animate-fade-in-left text-floralWhite z-10"
       >
-        Media
+        Podcast
       </h1>
     </div>
   </section>
 
-  <nav class="max-w-4xl mx-auto px-6 py-4 bg-stone-100 shadow-sm">
-    <div class="flex gap-4 justify-center">
-      <a
-        href="#podcast"
-        class="text-stone-700 hover:text-rose-600 transition-colors"
-      >
-        Podcast Episodes
-      </a>
-      <span class="text-stone-400">/</span>
-      <a
-        href="#writing"
-        class="text-stone-700 hover:text-rose-600 transition-colors"
-      >
-        Writing
-      </a>
-    </div>
-  </nav>
-
-  <section id="podcast" class="container mx-auto py-16 rounded-md">
+  <section class="container mx-auto py-16 rounded-md bg-floralWhite">
     <h2
       class="text-6xl font-customFont uppercase text-center mb-12 px-12 text-slate-800"
     >
@@ -118,7 +77,7 @@ const posts = await client.fetch(`
         episodesData.items.map(
           (episode: SpotifyEpisode) =>
             episode && (
-              <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between">
+              <div class="bg-white p-6 rounded-sm shadow-lg flex flex-col justify-between">
                 <iframe
                   style="border-radius:12px"
                   src={`https://open.spotify.com/embed/episode/${episode.id}/video?utm_source=generator`}
@@ -135,7 +94,7 @@ const posts = await client.fetch(`
                     {episode.description}
                   </p>
                   <button
-                    class="text-rose-600 hover:text-rose-700 text-sm font-medium transition-colors read-more-btn"
+                    class="text-ebony hover:text-ebony text-sm font-medium transition-colors read-more-btn"
                     data-description={episode.description}
                   >
                     Read More
@@ -149,7 +108,7 @@ const posts = await client.fetch(`
                     href={episode.external_urls.spotify}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="bg-rose-800 hover:bg-rose-700 text-white px-4 py-2 transition-colors rounded-lg"
+                    class="bg-ebony hover:bg-ebony text-white px-4 py-2 transition-colors rounded-sm"
                   >
                     Listen In Spotify
                   </a>
@@ -160,69 +119,13 @@ const posts = await client.fetch(`
       }
     </div>
   </section>
-
-  <section id="writing" class="container mx-auto py-24 px-4 bg-stone-50">
-    <h2
-      class="text-6xl font-customFont uppercase text-center mb-12 px-12 text-slate-800"
-    >
-      Writing
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-      {
-        posts.map((post: any) => (
-          <article class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-            {post.mainImage && (
-              <img
-                src={post.mainImage.asset.url}
-                alt={post.title}
-                class="w-full h-48 object-cover rounded-lg mb-4"
-              />
-            )}
-            <h3 class="text-2xl font-customFont mb-2">
-              <a
-                href={`/blog/${post.slug.current}`}
-                class="hover:text-rose-600 transition-colors"
-              >
-                {post.title}
-              </a>
-            </h3>
-            <p class="text-gray-600 mb-4">
-              {new Date(post.publishedAt).toLocaleDateString()}
-            </p>
-            {post.excerpt && (
-              <p class="text-gray-700 mb-4 line-clamp-3">{post.excerpt}</p>
-            )}
-            <a
-              href={`/blog/${post.slug.current}`}
-              class="inline-block bg-rose-800 hover:bg-rose-700 text-white px-4 py-2 rounded-lg transition-colors"
-            >
-              Read More
-            </a>
-          </article>
-        ))
-      }
-    </div>
-  </section>
 </Layout>
 
 <style>
   .hero-image {
-    background-image: url("../assets/coffee.png");
-  }
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fade-in {
-    animation: fadeInUp 1s ease-out forwards;
+    background-image: url("../assets/bjj-drawing.jpeg");
+    background-size: cover;
+    background-repeat: repeat-x;
   }
 
   .description-text {
