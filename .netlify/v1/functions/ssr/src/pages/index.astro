@@ -28,8 +28,8 @@ interface SpotifyEpisode {
 }
 
 const client = createClient({
-  projectId: import.meta.env.SANITY_PROJECT_ID || "agaaxyz0",
-  dataset: import.meta.env.SANITY_DATASET || "production",
+  projectId: import.meta.env.SANITY_PROJECT_ID,
+  dataset: import.meta.env.SANITY_DATASET,
   apiVersion: "2024-03-08",
   useCdn: true,
 });
