@@ -1,6 +1,6 @@
 import { CredentialsSignin } from "@auth/core/errors";
 import Credentials from "@auth/core/providers/credentials";
-import { defineConfig } from "auth-astro";
+import { defineConfig } from "@/types/auth-astro";
 import { client } from "./src/lib/sanity";
 import bcrypt from "bcryptjs";
 
