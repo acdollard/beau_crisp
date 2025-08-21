@@ -94,11 +94,20 @@ const { title } = Astro.props;
                 >
               </div>
             </div>
-            <a
-              href="/fitness_pdf"
-              class="text-floralWhite hover:text-khaki transition-colors duration-200 text-3xl"
-              >Resources</a
-            >
+            <div class="relative group">
+              <span class="text-floralWhite text-3xl cursor-default"
+                >Resources</span
+              >
+              <div
+                class="absolute left-0 mt-2 w-48 bg-stone-800 rounded-sm shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+              >
+                <a
+                  href="/free_resources"
+                  class="block px-4 py-2 text-floralWhite hover:text-khaki hover:bg-stone-700 transition-colors duration-200 text-xl"
+                  >Free PDFs</a
+                >
+              </div>
+            </div>
             <a
               href="/about"
               class="text-floralWhite hover:text-khaki transition-colors duration-200 text-3xl"
@@ -133,7 +142,7 @@ const { title } = Astro.props;
             >Writing</a
           >
           <a
-            href="/fitness_pdf"
+            href="/free_resources"
             class="block text-floralWhite hover:text-khaki transition-colors duration-200"
             >Resources</a
           >
