@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { createClient } from "@sanity/client";
 import beau_cafe from "../assets/beau-cafe.png";
+import Testimonials from "../components/Testimonials.astro";
 
 interface Post {
   title: string;
@@ -247,6 +248,8 @@ console.log(episodesData);
       </button>
     </div>
   </section>
+
+  <Testimonials />
 
   <section class="container mx-auto py-24 px-4 bg-medusa">
     <h2
