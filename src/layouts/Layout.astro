@@ -2,7 +2,6 @@
 import "../styles/global.css";
 import { Image } from "astro:assets";
 import logo from "../assets/buried2.svg";
-import AuthProvider from "../components/AuthProvider.astro";
 import { supabase } from "../lib/supabase.ts";
 
 interface Props {
@@ -51,8 +50,7 @@ const {
             ><Image
               src={logo}
               alt="Beau Crisp Logo"
-              height={100}
-              width={200}
+              width={170}
               class="w-32 h-16 md:w-48 md:h-24"
             /></a
           >
