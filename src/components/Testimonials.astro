@@ -77,12 +77,14 @@ const testimonials: Testimonial[] = [
               </div>
             </div>
 
-            <div class="testimonial-content">
-              <p class="text-gray-700 mb-4 line-clamp-4 group-hover:line-clamp-none transition-all duration-300">
-                {testimonial.shortText}
-              </p>
-              <div class="testimonial-full hidden group-hover:block">
-                <p class="text-gray-700 mb-4">{testimonial.fullText}</p>
+            <div class="testimonial-content overflow-hidden">
+              <div class="max-h-48 group-hover:max-h-[800px] transition-all duration-500 ease-in-out">
+                {/* <p class="text-gray-700 mb-4 line-clamp-4 group-hover:line-clamp-none transition-all duration-300 group-hover:opacity-0">
+                  {testimonial.shortText}
+                </p> */}
+                <div class="testimonial-full group-hover:opacity-100 transition-opacity line-clamp-4 group-hover:line-clamp-none duration-300 delay-100">
+                  <p class="text-gray-700 mb-4">{testimonial.fullText}</p>
+                </div>
               </div>
             </div>
 
@@ -120,10 +122,10 @@ const testimonials: Testimonial[] = [
                   </div>
 
                   <div class="testimonial-content">
-                    <p class="text-gray-700 mb-4 testimonial-short">
+                    <p class="text-gray-700 mb-4 testimonial-short transition-all duration-300 hover:display-none">
                       {testimonial.shortText}
                     </p>
-                    <p class="text-gray-700 mb-4 testimonial-full hidden">
+                    <p class="text-gray-700 mb-4 testimonial-full hidden transition-all duration-300 hover:display-block">
                       {testimonial.fullText}
                     </p>
                     <button class="text-khaki hover:text-ebony transition-colors duration-200 text-sm font-medium expand-btn">

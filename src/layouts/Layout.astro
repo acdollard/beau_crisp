@@ -15,8 +15,6 @@ const { title } = Astro.props;
 const {
   data: { session },
 } = await supabase.auth.getSession();
-
-console.log(session);
 ---
 
 <!doctype html>
