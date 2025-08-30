@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { createClient } from "@sanity/client";
 import beau_cafe from "../assets/beau-cafe.png";
+import beau_bike from "../assets/beauOnABike.png";
 import Testimonials from "../components/Testimonials.astro";
 
 interface Post {
@@ -185,7 +186,7 @@ const episodesData = await podcastEpisodes.json();
           >
           </div>
           <Image
-            src={beau_cafe}
+            src={beau_bike}
             alt="Strength Training"
             class="rounded-sm shadow-xl w-full h-auto relative z-10"
             width={1000}
