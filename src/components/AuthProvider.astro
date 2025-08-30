@@ -1,0 +1,48 @@
+---
+// Auth provider component for managing authentication state
+---
+
+<div id="authProvider">
+  <slot />
+</div>
+
+<script>
+  import { supabase } from "../lib/supabase.ts";
+
+  // Get the current session
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  // Set up auth state listener
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (event === "SIGNED_IN") {
+      console.log("User signed in:", session?.user?.email);
+      // You can emit a custom event or update global state here
+      window.dispatchEvent(
+        new CustomEvent("authStateChanged", {
+          detail: { user: session?.user, isAuthenticated: true },
+        })
+      );
+    } else if (event === "SIGNED_OUT") {
+      console.log("User signed out");
+      window.dispatchEvent(
+        new CustomEvent("authStateChanged", {
+          detail: { user: null, isAuthenticated: false },
+        })
+      );
+    }
+  });
+
+  // Make auth state available globally
+  (window as any).authState = {
+    user: session?.user || null,
+    isAuthenticated: !!session,
+    signOut: async () => {
+      const { error } = await supabase.auth.signOut();
+      if (!error) {
+        window.location.href = "/";
+      }
+    },
+  };
+</script>

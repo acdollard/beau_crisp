@@ -1,0 +1,142 @@
+---
+// Login form component for Supabase auth
+---
+
+<div
+  class="min-h-screen flex items-center justify-center bg-ebony py-12 px-4 sm:px-6 lg:px-8"
+>
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-customFont text-floralWhite">
+        Sign in to your account
+      </h2>
+    </div>
+    <form
+      class="mt-8 space-y-6"
+      id="loginForm"
+      action="/api/auth/signin"
+      method="post"
+    >
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="email" class="sr-only">Email address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-khaki focus:border-khaki focus:z-10 sm:text-sm"
+            placeholder="Email address"
+          />
+        </div>
+        <div>
+          <label for="password" class="sr-only">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-khaki focus:border-khaki focus:z-10 sm:text-sm"
+            placeholder="Password"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-floralWhite bg-khaki hover:bg-floralWhite hover:text-ebony focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-khaki transition-colors duration-200"
+        >
+          Sign in
+        </button>
+      </div>
+
+      <div class="text-center">
+        <p class="text-sm text-floralWhite">
+          Don't have an account?
+          <a
+            href="/signup"
+            class="font-medium text-khaki hover:text-ebony transition-colors duration-200"
+          >
+            Sign up
+          </a>
+        </p>
+      </div>
+
+      <div id="errorMessage" class="hidden text-red-600 text-sm text-center">
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Handle form submission and display messages based on URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const error = urlParams.get("error");
+
+  const errorMessage = document.getElementById("errorMessage");
+
+  if (error) {
+    if (errorMessage) {
+      switch (error) {
+        case "missing_fields":
+          errorMessage.textContent = "Please fill in all required fields.";
+          break;
+        case "invalid_email":
+          errorMessage.textContent = "Please enter a valid email address.";
+          break;
+        case "password_too_short":
+          errorMessage.textContent =
+            "Password must be at least 6 characters long.";
+          break;
+        case "invalid_credentials":
+          errorMessage.textContent =
+            "Invalid email or password. Please try again.";
+          break;
+        case "email_not_confirmed":
+          errorMessage.textContent =
+            "Please check your email and confirm your account before signing in.";
+          break;
+        case "too_many_requests":
+          errorMessage.textContent =
+            "Too many login attempts. Please wait a moment before trying again.";
+          break;
+        case "user_not_found":
+          errorMessage.textContent =
+            "No account found with this email address.";
+          break;
+        case "no_session":
+          errorMessage.textContent = "Login failed. Please try again.";
+          break;
+        case "server_error":
+          errorMessage.textContent = "Server error. Please try again later.";
+          break;
+        case "not_authenticated":
+          errorMessage.textContent = "Please log in to access that page.";
+          break;
+        default:
+          errorMessage.textContent =
+            decodeURIComponent(error) || "An error occurred during sign in";
+      }
+      errorMessage.classList.remove("hidden");
+    }
+  }
+
+  // Clear error message when user starts typing
+  const emailInput = document.getElementById("email") as HTMLInputElement;
+  const passwordInput = document.getElementById("password") as HTMLInputElement;
+
+  emailInput?.addEventListener("input", () => {
+    if (errorMessage) {
+      errorMessage.classList.add("hidden");
+    }
+  });
+
+  passwordInput?.addEventListener("input", () => {
+    if (errorMessage) {
+      errorMessage.classList.add("hidden");
+    }
+  });
+</script>

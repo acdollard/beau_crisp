@@ -1,0 +1,30 @@
+---
+// Protected route component that requires authentication
+interface Props {
+  redirectTo?: string;
+}
+
+const { redirectTo = "/login" } = Astro.props;
+---
+
+<div id="protectedRoute" data-redirect-to={redirectTo}>
+  <slot />
+</div>
+
+<script>
+  import { supabase } from "../lib/supabase.ts";
+  const redirectTo =
+    document
+      .getElementById("protectedRoute")
+      ?.getAttribute("data-redirect-to") || "/login";
+
+  // Check if user is authenticated
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    // Redirect to login if not authenticated
+    window.location.href = redirectTo;
+  }
+</script>

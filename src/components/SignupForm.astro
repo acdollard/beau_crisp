@@ -1,0 +1,180 @@
+---
+// Signup form component for Supabase auth
+---
+
+<div
+  class="min-h-screen flex items-center justify-center bg-ebony py-12 px-4 sm:px-6 lg:px-8"
+>
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-customFont text-floralWhite">
+        Create your account
+      </h2>
+    </div>
+    <form
+      class="mt-8 space-y-6"
+      id="signupForm"
+      action="/api/auth/register"
+      method="post"
+    >
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="name" class="sr-only">Full name</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-khaki focus:border-khaki focus:z-10 sm:text-sm"
+            placeholder="Full name"
+          />
+        </div>
+        <div>
+          <label for="email" class="sr-only">Email address</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-khaki focus:border-khaki focus:z-10 sm:text-sm"
+            placeholder="Email address"
+          />
+        </div>
+        <div>
+          <label for="password" class="sr-only">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="new-password"
+            required
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-khaki focus:border-khaki focus:z-10 sm:text-sm"
+            placeholder="Password"
+          />
+        </div>
+        <div>
+          <label for="confirmPassword" class="sr-only">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            type="password"
+            autocomplete="new-password"
+            required
+            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-khaki focus:border-khaki focus:z-10 sm:text-sm"
+            placeholder="Confirm Password"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-floralWhite bg-khaki hover:bg-floralWhite hover:text-ebony focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-khaki transition-colors duration-200"
+        >
+          Sign up
+        </button>
+      </div>
+
+      <div class="text-center">
+        <p class="text-sm text-floralWhite">
+          Already have an account?
+          <a
+            href="/login"
+            class="font-medium text-khaki hover:text-ebony transition-colors duration-200"
+          >
+            Sign in
+          </a>
+        </p>
+      </div>
+
+      <div id="errorMessage" class="hidden text-red-600 text-sm text-center">
+      </div>
+      <div
+        id="successMessage"
+        class="hidden text-green-600 text-sm text-center"
+      >
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Handle form submission and display messages based on URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const error = urlParams.get("error");
+  const success = urlParams.get("success");
+
+  const errorMessage = document.getElementById("errorMessage");
+  const successMessage = document.getElementById("successMessage");
+
+  if (error) {
+    if (errorMessage) {
+      switch (error) {
+        case "missing_fields":
+          errorMessage.textContent = "Please fill in all required fields.";
+          break;
+        case "invalid_email":
+          errorMessage.textContent = "Please enter a valid email address.";
+          break;
+        case "password_too_short":
+          errorMessage.textContent =
+            "Password must be at least 6 characters long.";
+          break;
+        case "password_mismatch":
+          errorMessage.textContent = "Passwords do not match.";
+          break;
+        case "name_too_short":
+          errorMessage.textContent = "Name must be at least 2 characters long.";
+          break;
+        case "user_already_exists":
+          errorMessage.textContent =
+            "An account with this email already exists.";
+          break;
+        case "registration_failed":
+          errorMessage.textContent = "Registration failed. Please try again.";
+          break;
+        case "server_error":
+          errorMessage.textContent = "Server error. Please try again later.";
+          break;
+        default:
+          errorMessage.textContent =
+            decodeURIComponent(error) || "An error occurred during sign up";
+      }
+      errorMessage.classList.remove("hidden");
+      if (successMessage) {
+        successMessage.classList.add("hidden");
+      }
+    }
+  }
+
+  if (success) {
+    if (successMessage) {
+      successMessage.textContent =
+        "Account created successfully! Please check your email to verify your account.";
+      successMessage.classList.remove("hidden");
+      if (errorMessage) {
+        errorMessage.classList.add("hidden");
+      }
+    }
+  }
+
+  // Client-side password validation
+  document.getElementById("signupForm")?.addEventListener("submit", (e) => {
+    const formData = new FormData(e.target as HTMLFormElement);
+    const password = formData.get("password") as string;
+    const confirmPassword = formData.get("confirmPassword") as string;
+
+    if (password !== confirmPassword) {
+      e.preventDefault();
+      if (errorMessage) {
+        errorMessage.textContent = "Passwords do not match";
+        errorMessage.classList.remove("hidden");
+        if (successMessage) {
+          successMessage.classList.add("hidden");
+        }
+      }
+    }
+  });
+</script>

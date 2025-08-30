@@ -2,11 +2,21 @@
 import "../styles/global.css";
 import { Image } from "astro:assets";
 import logo from "../assets/buried2.svg";
+import AuthProvider from "../components/AuthProvider.astro";
+import { supabase } from "../lib/supabase.ts";
+
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
+
+// Get the current session on the server side
+const {
+  data: { session },
+} = await supabase.auth.getSession();
+
+console.log(session);
 ---
 
 <!doctype html>
@@ -118,6 +128,25 @@ const { title } = Astro.props;
               class="text-floralWhite hover:text-khaki transition-colors duration-200 text-3xl"
               >Contact</a
             >
+            {
+              session ? (
+                <form action="/api/auth/signout" method="post" class="inline">
+                  <button
+                    type="submit"
+                    class="block text-floralWhite hover:text-khaki transition-colors duration-200 text-3xl"
+                  >
+                    Sign Out
+                  </button>
+                </form>
+              ) : (
+                <a
+                  href="/login"
+                  class="text-floralWhite hover:text-khaki transition-colors duration-200 text-3xl"
+                >
+                  Sign In
+                </a>
+              )
+            }
           </div>
         </div>
 
@@ -156,12 +185,39 @@ const { title } = Astro.props;
             class="block text-floralWhite hover:text-khaki transition-colors duration-200"
             >Contact</a
           >
+          {
+            session ? (
+              <form action="/api/auth/signout" method="post" class="inline">
+                <button
+                  type="submit"
+                  class="block text-floralWhite hover:text-khaki transition-colors duration-200"
+                  id="logout-button"
+                >
+                  Sign Out
+                </button>
+              </form>
+            ) : (
+              <a
+                href="/login"
+                class="block text-floralWhite hover:text-khaki transition-colors duration-200"
+              >
+                Sign In
+              </a>
+            )
+          }
         </div>
       </nav>
     </header>
+
     <main class="mx-auto bg-floralWhite">
       <slot />
     </main>
+
+    <!-- Make session data available to client-side JavaScript -->
+    <script define:vars={{ session }}>
+      // Session data is now available globally
+      window.sessionData = session;
+    </script>
     <footer class="bg-ebony mt-auto">
       <div class="container mx-auto px-4 py-6 text-center">
         <p class="text-floralWhite">
