@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import { createClient } from "@sanity/client";
 import beau_cafe from "../assets/beau-cafe.png";
 import beau_bike from "../assets/beauOnABike.png";
+import outdoor_beau from "../assets/outdoors_beau.jpg";
 import Testimonials from "../components/Testimonials.astro";
 
 interface Post {
@@ -35,21 +36,6 @@ const client = createClient({
   apiVersion: "2024-03-08",
   useCdn: true,
 });
-
-const posts = await client.fetch(`
-  *[_type == "post"] | order(publishedAt desc) {
-    title,
-    slug,
-    publishedAt,
-    excerpt,
-    mainImage {
-      asset-> {
-        _id,
-        url
-      }
-    }
-  }[0...3]
-`);
 
 const recentPosts = await client.fetch(`
   *[_type == "post"] | order(publishedAt desc)[0...6] {
@@ -119,25 +105,29 @@ const episodesData = await podcastEpisodes.json();
         <h2
           class="text-floralWhite font-customFont text-4xl md:text-5xl text-right"
         >
-          <span class="animate-fade-in-delayed-1 inline-block">Philosophy,</span
+          <span class="animate-fade-in-delayed-1 inline-block"
+            >Train With GLP-1s</span
           >
-          <span class="animate-fade-in-delayed-2 inline-block">fitness,</span>
-          <span class="animate-fade-in-delayed-3 inline-block">mindset,</span>
-          <span class="animate-fade-in-delayed-4 inline-block"
-            >and real talk.</span
+          <span class="animate-fade-in-delayed-2 inline-block"
+            >The Right Way.</span
           >
         </h2>
         <div
           class="flex flex-col md:flex-row gap-4 md:gap-6 animate-fade-in-left z-10 mt-6"
         >
           <button
-            class="bg-khaki text-floralWhite hover:bg-floralWhite hover:text-ebony px-4 py-2 md:px-5 md:py-3 transition-colors duration-300 font-condensed mt-6 rounded-sm text-lg"
-            ><a href="/podcast">Listen and Learn</a></button
+            class="bg-khaki text-floralWhite hover:bg-floralWhite hover:text-ebony px-4 py-2 md:px-5 md:py-3 transition-colors duration-300 font-condensed mt-6 rounded-sm text-lg uppercase"
+            ><a href="/contact">Train With Me</a></button
           >
 
           <button
-            class="bg-khaki text-floralWhite hover:bg-floralWhite hover:text-ebony px-4 py-2 md:px-5 md:py-3 transition-colors duration-300 font-condensed mt-6 rounded-sm text-lg"
-            ><a href="/workouts">Strength & Conditioning Programs</a></button
+            class="bg-khaki text-floralWhite hover:bg-floralWhite hover:text-ebony px-4 py-2 md:px-5 md:py-3 transition-colors duration-300 font-condensed mt-6 rounded-sm text-lg uppercase"
+            ><a href="/login">Become A Member</a></button
+          >
+
+          <button
+            class="bg-khaki text-floralWhite hover:bg-floralWhite hover:text-ebony px-4 py-2 md:px-5 md:py-3 transition-colors duration-300 font-condensed mt-6 rounded-sm text-lg uppercase"
+            ><a href="/podcast">Podcast</a></button
           >
         </div>
       </div>
@@ -151,23 +141,15 @@ const episodesData = await podcastEpisodes.json();
           class="w-full md:w-1/2 flex flex-col justify-center items-start gap-12 intro-text-container"
         >
           <h2 class="text-ebony text-6xl font-customFont">
-            In Pursuit of the 3 M's:
-            <br />
             <b>Mind, Movement, Meaning.</b>
           </h2>
           <p
             class="text-xl md:text-2xl text-left text-jet md:py-18 pr-6 font-condensed"
           >
-            I'm Beau Crisp. I'm a strength & conditioning coach and martial
-            artist with a degree in Kinesiology and the following
-            certifications: CSCS, FRCms, CFSC, and TPI L2's. I've worked with
-            some of the highest-performing athletes in the world, from NFL
-            players to professional fighters. I have a unique approach to
-            strength and conditioning that I would like to share with you.
+            Helping find the meaning in movement & self-discovery through
+            discipline.
 
-            <br /><br /> Every single person, yourself included, deserves to get
-            to most out of their body. If you want to take this journey together,
-            reach out and let's get to work.
+            <br /><br /> Reclaim your strength. Uncover what's within.
           </p>
           <button
             class="bg-rawUmber text-floralWhite hover:bg-ebony px-5 py-3 md:px-7 md:py-5 transition-colors duration-300 font-condensed mt-6 rounded-sm text-xl"
@@ -186,7 +168,7 @@ const episodesData = await podcastEpisodes.json();
           >
           </div>
           <Image
-            src={beau_bike}
+            src={outdoor_beau}
             alt="Strength Training"
             class="rounded-sm shadow-xl w-full h-auto relative z-10"
             width={1000}
