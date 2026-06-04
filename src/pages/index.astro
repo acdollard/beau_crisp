@@ -2,10 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { createClient } from "@sanity/client";
-import IMG_1328 from "../assets/IMG_1328_1.png";
-import IMG_1348 from "../assets/IMG_1348_1.png";
-import young_beau from "../assets/young-beau.png";
 import beau_cafe from "../assets/beau-cafe.png";
+import beau_bike from "../assets/beauOnABike.png";
+import outdoor_beau from "../assets/outdoors_beau.jpg";
+import Testimonials from "../components/Testimonials.astro";
 
 interface Post {
   title: string;
@@ -31,26 +31,11 @@ interface SpotifyEpisode {
 }
 
 const client = createClient({
-  projectId: "agaaxyz0",
-  dataset: "production",
+  projectId: import.meta.env.SANITY_PROJECT_ID || "agaaxyz0",
+  dataset: import.meta.env.SANITY_DATASET || "production",
   apiVersion: "2024-03-08",
   useCdn: true,
 });
-
-const posts = await client.fetch(`
-  *[_type == "post"] | order(publishedAt desc) {
-    title,
-    slug,
-    publishedAt,
-    excerpt,
-    mainImage {
-      asset-> {
-        _id,
-        url
-      }
-    }
-  }[0...3]
-`);
 
 const recentPosts = await client.fetch(`
   *[_type == "post"] | order(publishedAt desc)[0...6] {
@@ -104,7 +89,6 @@ const podcastEpisodes = await fetch(
 );
 
 const episodesData = await podcastEpisodes.json();
-console.log(episodesData);
 ---
 
 <Layout title="Buried In The Bones">
@@ -121,25 +105,29 @@ console.log(episodesData);
         <h2
           class="text-floralWhite font-customFont text-4xl md:text-5xl text-right"
         >
-          <span class="animate-fade-in-delayed-1 inline-block">Philosophy,</span
+          <span class="animate-fade-in-delayed-1 inline-block"
+            >Train With GLP-1s</span
           >
-          <span class="animate-fade-in-delayed-2 inline-block">fitness,</span>
-          <span class="animate-fade-in-delayed-3 inline-block">mindset,</span>
-          <span class="animate-fade-in-delayed-4 inline-block"
-            >and real talk.</span
+          <span class="animate-fade-in-delayed-2 inline-block"
+            >The Right Way.</span
           >
         </h2>
         <div
           class="flex flex-col md:flex-row gap-4 md:gap-6 animate-fade-in-left z-10 mt-6"
         >
           <button
-            class="bg-khaki text-floralWhite hover:bg-floralWhite hover:text-ebony px-4 py-2 md:px-5 md:py-3 transition-colors duration-300 font-condensed mt-6 rounded-sm text-lg"
-            ><a href="/podcast">Listen and Learn</a></button
+            class="bg-khaki text-floralWhite hover:bg-floralWhite hover:text-ebony px-4 py-2 md:px-5 md:py-3 transition-colors duration-300 font-condensed mt-6 rounded-sm text-lg uppercase"
+            ><a href="/contact">Train With Me</a></button
           >
 
           <button
-            class="bg-khaki text-floralWhite hover:bg-floralWhite hover:text-ebony px-4 py-2 md:px-5 md:py-3 transition-colors duration-300 font-condensed mt-6 rounded-sm text-lg"
-            ><a href="/workouts">Strength & Conditioning Programs</a></button
+            class="bg-khaki text-floralWhite hover:bg-floralWhite hover:text-ebony px-4 py-2 md:px-5 md:py-3 transition-colors duration-300 font-condensed mt-6 rounded-sm text-lg uppercase"
+            ><a href="/login">Become A Member</a></button
+          >
+
+          <button
+            class="bg-khaki text-floralWhite hover:bg-floralWhite hover:text-ebony px-4 py-2 md:px-5 md:py-3 transition-colors duration-300 font-condensed mt-6 rounded-sm text-lg uppercase"
+            ><a href="/podcast">Podcast</a></button
           >
         </div>
       </div>
@@ -150,23 +138,18 @@ console.log(episodesData);
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row gap-12 md:gap-16">
         <div
-          class="w-full md:w-1/2 flex flex-col justify-center items-start gap-12"
+          class="w-full md:w-1/2 flex flex-col justify-center items-start gap-12 intro-text-container"
         >
           <h2 class="text-ebony text-6xl font-customFont">
-            In Pursuit of the 3 M's:
-            <br />
             <b>Mind, Movement, Meaning.</b>
           </h2>
           <p
             class="text-xl md:text-2xl text-left text-jet md:py-18 pr-6 font-condensed"
           >
-            I'm Beau. I'm a strength & conditioning coach and martial artist.
-            This is my podcast. I have a BS in Kinesiology, CSCS, FRCms, CFSC,
-            TPI L2's and I've worked with some of the highest-performing
-            athletes in the world.
-            <br /><br /> I started this podcast for normal people in search of self-discovery,
-            growth, and adventure. If that sounds like you, then get ready to dig
-            deep.
+            Helping find the meaning in movement & self-discovery through
+            discipline.
+
+            <br /><br /> Reclaim your strength. Uncover what's within.
           </p>
           <button
             class="bg-rawUmber text-floralWhite hover:bg-ebony px-5 py-3 md:px-7 md:py-5 transition-colors duration-300 font-condensed mt-6 rounded-sm text-xl"
@@ -177,15 +160,15 @@ console.log(episodesData);
 
         <div class="w-full md:w-1/2 relative">
           <div
-            class="absolute h-[90%] w-full bg-ebony rounded-sm transform right-4 md:right-12 bottom-4 md:bottom-18"
+            class="absolute md:h-[450px] lg:h-[680px] w-full bg-ebony rounded-sm transform top-4 left-4"
           >
           </div>
           <div
-            class="absolute h-full w-full bg-rawUmber rounded-sm transform top-4 md:top-8 left-4 md:left-12"
+            class="absolute md:h-[450px] lg:h-[680px] w-full bg-rawUmber rounded-sm transform -top-4 right-4"
           >
           </div>
           <Image
-            src={beau_cafe}
+            src={outdoor_beau}
             alt="Strength Training"
             class="rounded-sm shadow-xl w-full h-auto relative z-10"
             width={1000}
@@ -251,9 +234,11 @@ console.log(episodesData);
     </div>
   </section>
 
+  <Testimonials />
+
   <section class="container mx-auto py-24 px-4 bg-medusa">
     <h2
-      class="text-6xl font-customFont uppercase text-center mb-12 px-12 text-jet"
+      class="text-6xl font-customFont uppercase text-center mb-12 px-12 text-ebony"
     >
       Recent Writing
     </h2>
@@ -328,6 +313,16 @@ console.log(episodesData);
     background-size: contain;
     background-repeat: repeat-x;
     background-position: center;
+  }
+
+  .intro-text-container {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari support */
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border: 1px solid rgba(10, 10, 10, 0.1);
   }
 </style>
 

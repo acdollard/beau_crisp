@@ -1,0 +1,124 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import excel_screenshot from "../assets/excel-screenshot.png";
+---
+
+<Layout title="Free Resources - Beau Crisp">
+  <section class="min-h-[60vh] pt-48 hero-image bg-center">
+    <div class="flex flex-col items-end justify-center w-[80%]">
+      <h1
+        class="text-6xl md:text-7xl p-3 md:p-0 font-customFont animate-fade-in-left text-floralWhite z-10"
+      >
+        Download These FREE PDFs
+      </h1>
+    </div>
+  </section>
+
+  <section class="py-24 px-4 bg-floralWhite">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Nutrition Guide -->
+        <div class="bg-white shadow-lg rounded-sm overflow-hidden">
+          <div class="p-6">
+            <h2 class="text-3xl font-customFont mb-4 text-ebony">
+              Nutrition Guide
+            </h2>
+            <p class="text-gray-700 mb-6 font-condensed">
+              A comprehensive guide to nutrition fundamentals, meal planning,
+              and fueling your training. Learn how to optimize your nutrition
+              for better performance and recovery.
+            </p>
+            <a
+              href="/nutrition.pdf"
+              download
+              class="inline-block bg-khaki text-floralWhite hover:bg-ebony px-6 py-3 rounded-sm transition-colors duration-300 font-condensed"
+            >
+              Download PDF
+            </a>
+          </div>
+          <div class="bg-gray-100 p-4">
+            <iframe
+              src="/nutrition.pdf"
+              height="400"
+              class="w-full"
+              title="Nutrition Guide Preview"
+            >
+            </iframe>
+          </div>
+        </div>
+
+        <!-- BJJ Training Plan -->
+        <div class="bg-white shadow-lg rounded-sm overflow-hidden">
+          <div class="p-6">
+            <h2 class="text-3xl font-customFont mb-4 text-ebony">
+              7-Week BJJ Competition Training Plan
+            </h2>
+            <p class="text-gray-700 mb-6 font-condensed">
+              A comprehensive 7-week training program designed specifically for
+              BJJ competition preparation. Includes strength training,
+              conditioning, and technical work to get you competition-ready.
+            </p>
+            <a
+              href="/bjj-comp-training-plan.xlsx"
+              download
+              class="inline-block bg-khaki text-floralWhite hover:bg-ebony px-6 py-3 rounded-sm transition-colors duration-300 font-condensed"
+            >
+              Download Excel
+            </a>
+          </div>
+          <div class="bg-gray-100 p-4 flex items-center justify-center">
+            <div class="text-center">
+              <Image
+                src={excel_screenshot}
+                alt="Excel Training Plan"
+                class="w-full h-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Info Section -->
+      <div class="mt-16 bg-ebony p-8 rounded-sm">
+        <h3 class="text-3xl font-customFont mb-6 text-floralWhite text-center">
+          What You'll Get
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h4 class="text-2xl font-customFont mb-4 text-floralWhite">
+              Nutrition Guide Includes:
+            </h4>
+            <ul class="text-floralWhite space-y-2 font-condensed">
+              <li>• Macronutrient breakdowns and timing</li>
+              <li>• Pre and post-workout nutrition strategies</li>
+              <li>• Meal planning templates</li>
+              <li>• Supplement recommendations</li>
+              <li>• Hydration guidelines</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-2xl font-customFont mb-4 text-floralWhite">
+              BJJ Training Plan Includes:
+            </h4>
+            <ul class="text-floralWhite space-y-2 font-condensed">
+              <li>• 7-week progressive training schedule</li>
+              <li>• Strength and conditioning workouts</li>
+              <li>• BJJ-specific assault-bike cardio training</li>
+              <li>• Competition week preparation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-image {
+    background-image: url("../assets/torso-drawing.jpeg");
+    background-size: auto;
+    background-repeat: repeat-x;
+    background-position: center;
+  }
+</style>

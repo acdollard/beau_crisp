@@ -1,0 +1,69 @@
+---
+// User profile component for authenticated users
+---
+
+<div class="bg-white shadow-lg rounded-sm p-6 max-w-md mx-auto">
+  <div class="text-center mb-6">
+    <div
+      class="w-20 h-20 bg-khaki rounded-full flex items-center justify-center mx-auto mb-4"
+    >
+      <span class="text-2xl font-customFont text-floralWhite" id="userInitials">
+        <!-- User initials will be inserted here -->
+      </span>
+    </div>
+    <h2 class="text-2xl font-customFont text-ebony" id="userName">
+      <!-- User name will be inserted here -->
+    </h2>
+    <p class="text-gray-600" id="userEmail">
+      <!-- User email will be inserted here -->
+    </p>
+  </div>
+
+  <div class="space-y-4">
+    <form action="/api/auth/signout" method="post">
+      <button
+        type="submit"
+        class="w-full bg-ebony text-floralWhite hover:bg-rawUmber px-4 py-2 rounded-sm transition-colors duration-200 font-condensed"
+      >
+        Sign Out
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  import { supabase } from "../lib/supabase.ts";
+
+  // Get current user
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    // Update user info
+    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+    const userInitials = document.getElementById("userInitials");
+
+    if (userName) {
+      userName.textContent = user.user_metadata?.name || "User";
+    }
+
+    if (userEmail) {
+      userEmail.textContent = user.email || "";
+    }
+
+    if (userInitials) {
+      const name = user.user_metadata?.name || user.email || "U";
+      const initials = name
+        .split(" ")
+        .map((n: string) => n[0])
+        .join("")
+        .toUpperCase()
+        .slice(0, 2);
+      userInitials.textContent = initials;
+    }
+  }
+
+  // Logout is now handled by the form submission to /api/auth/signout
+</script>
