@@ -1,0 +1,29 @@
+---
+import type { Props as $, TypedObject } from "astro-portabletext/types";
+
+interface ImageNode extends TypedObject {
+  url?: string;
+  alt?: string;
+  asset?: { url?: string };
+}
+
+type Props = $<ImageNode>;
+
+const { node } = Astro.props;
+const src = node.url ?? node.asset?.url;
+const alt = node.alt ?? "";
+---
+
+{
+  src && (
+    <figure class="my-8">
+      <img
+        src={src}
+        alt={alt}
+        class="w-full rounded-sm"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  )
+}

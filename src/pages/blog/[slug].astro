@@ -1,6 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { PortableText } from "astro-portabletext";
+import { List } from "astro-portabletext/components";
+import PortableTextImage from "../../components/portableText/PortableTextImage.astro";
 import { client } from "../../lib/sanity";
+
+const portableTextComponents = {
+  type: {
+    image: PortableTextImage,
+  },
+  list: List,
+};
 
 export async function getStaticPaths() {
   const posts = await client.fetch(`
@@ -31,7 +41,12 @@ const post = await client.fetch(
     },
     body[] {
       ...,
+      markDefs[] {
+        ...
+      },
       _type == "image" => {
+        ...,
+        alt,
         "url": asset->url
       }
     }
@@ -75,23 +90,16 @@ if (!post) {
       )
     }
 
-    <div class="prose lg:prose-xl max-w-none">
-      {
-        post.body?.map((block: any) => {
-          if (block._type === "block") {
-            return <p class="mb-4">{block.children[0].text}</p>;
-          } else if (block._type === "image" && block.url) {
-            return (
-              <img
-                src={block.url}
-                alt="Blog content image"
-                class="my-8 rounded-sm"
-              />
-            );
-          }
-        })
-      }
-    </div>
+    {
+      post.body?.length > 0 && (
+        <div class="prose lg:prose-xl max-w-none prose-headings:font-customFont prose-a:text-ebony hover:prose-a:text-jet">
+          <PortableText
+            value={post.body}
+            components={portableTextComponents}
+          />
+        </div>
+      )
+    }
     <div class="flex justify-center mt-12">
       <a
         href="/writing"
