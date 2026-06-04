@@ -21,7 +21,6 @@ interface WorkoutPlan {
   };
 }
 
-// This would typically be filtered by the logged-in user's ID
 const workoutPlans = await client.fetch<WorkoutPlan[]>(`
   *[_type == "workoutPlan"] | order(startDate desc) {
     title,
@@ -38,14 +37,8 @@ const workoutPlans = await client.fetch<WorkoutPlan[]>(`
 
 <Layout title="Workout Plans - Beau Crisp">
   <div class="max-w-4xl mx-auto min-h-[96vh] pt-48">
-    <div class="flex justify-between items-center mb-8">
+    <div class="mb-8">
       <h1 class="text-4xl font-bold">Workout Plans</h1>
-      <a
-        href="/workouts/new"
-        class="bg-ebony text-white px-4 py-2 hover:bg-ebony rounded-sm"
-      >
-        Create New Plan
-      </a>
     </div>
 
     <div class="grid gap-6">
@@ -69,14 +62,6 @@ const workoutPlans = await client.fetch<WorkoutPlan[]>(`
                     ? new Date(plan.endDate).toLocaleDateString()
                     : "Ongoing"}
                 </p>
-              </div>
-              <div class="space-x-2">
-                <a
-                  href={`/workouts/${plan.slug.current}/edit`}
-                  class="inline-block bg-gray-100 text-gray-700 px-3 py-1 rounded hover:bg-gray-200"
-                >
-                  Edit
-                </a>
               </div>
             </div>
 

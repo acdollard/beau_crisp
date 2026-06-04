@@ -1,17 +1,8 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  functions = "dist"
-
-[functions]
-  included_files = ["dist/**/*.mjs"]
 
 [[redirects]]
   from = "/studio/*"
   to = "buried-fe.netlify.app/:splat"
   status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200 

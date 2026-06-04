@@ -46,7 +46,25 @@ if (!post) {
 ---
 
 <Layout title={`${post.title} - Beau Crisp Blog`}>
-  <article class="max-w-3xl mx-auto px-4 md:px-0 min-h-[96vh] pt-48">
+  <section class="bg-ebony pt-48 pb-16">
+    <div class="max-w-3xl mx-auto px-4 md:px-6">
+      <h1 class="text-4xl md:text-6xl font-customFont text-floralWhite leading-tight">
+        {post.title}
+      </h1>
+      <time
+        datetime={post.publishedAt}
+        class="block mt-4 text-khaki font-condensed text-lg"
+      >
+        {new Date(post.publishedAt).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </time>
+    </div>
+  </section>
+
+  <article class="max-w-3xl mx-auto px-4 md:px-6 py-12">
     {
       post.mainImage && (
         <img
@@ -56,12 +74,6 @@ if (!post) {
         />
       )
     }
-
-    <h1 class="text-4xl font-bold mb-4">{post.title}</h1>
-
-    <div class="text-gray-600 mb-8">
-      {new Date(post.publishedAt).toLocaleDateString()}
-    </div>
 
     <div class="prose lg:prose-xl max-w-none">
       {
@@ -80,10 +92,10 @@ if (!post) {
         })
       }
     </div>
-    <div class="flex justify-center">
+    <div class="flex justify-center mt-12">
       <a
         href="/writing"
-        class="bg-ebony hover:bg-ebony text-white px-4 py-2 transition-colors duration-200 shadow-lg md:text-2xl pb-2 rounded-sm"
+        class="bg-ebony hover:bg-jet text-floralWhite px-6 py-3 transition-colors duration-200 shadow-lg font-condensed uppercase rounded-sm"
       >
         Back to Writing
       </a>
