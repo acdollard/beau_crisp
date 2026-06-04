@@ -12,5 +12,16 @@ export default defineConfig({
     build: {
       target: "esnext",
     },
+    server: {
+      fs: {
+        allow: [".."],
+      },
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
+      },
+    },
+    optimizeDeps: {
+      include: ["@sanity/client"],
+    },
   },
 });
